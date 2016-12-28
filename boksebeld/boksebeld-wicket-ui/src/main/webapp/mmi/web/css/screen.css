@@ -1,0 +1,144 @@
+/**
+ *  ---------------------------------------------------------------------------------------------------------
+ *              Ident: Belastingdienst - B/CAO 
+ *            Creator: Nando van Rijnberk
+ *          Copyright: (c) 2011 Belastingdienst / Centrum voor Applicatieontwikkeling en Onderhoud,
+ *                         All Rights Reserved.
+ *  ---------------------------------------------------------------------------------------------------------
+ *                                              |   Unpublished work. This computer program includes
+ *     De Belastingdienst                       |   Confidential, Properietary Information and is a
+ *     Postbus 9050                             |   trade Secret of the Belastingdienst. No part of
+ *     7300 GM  Apeldoorn                       |   this file may be reproduced or transmitted in any
+ *     The Netherlands                          |   form or by any means, electronic or mechanical,
+ *     http://belastingdienst.nl/               |   for the purpose, without the express written
+ *                                              |   permission of the copyright holder.
+ *  ---------------------------------------------------------------------------------------------------------
+ */
+ 
+ /**
+ * screen.css.
+ *
+ * Definitie toevoegingen op Rijksoverheid huistijl stijlen.
+ *
+ * @version			1.0.1
+ * @date			2011-08-14
+ * @lastmodified	2010-04-30 10:26
+ * @author			Nando van Rijnberk
+ * @project			Webstraat; mmi: Invoering huistijl Rijksoverheid.
+ * @link			http://
+ * @cssdoc			version 1.0-pre
+ * @ since 			2.0
+ *
+ * <pre>
+ * Dit stylesheet zorgt voor de ontkoppeling van de rijkshuisstijl sheet; screen.css.
+ * Dit stylesheet bevat, toevoeingen en benodigde correcties op de standaard rijksshuisstijl stylesheets om gewenste functionaliteit voor B/CAO java web applicaties te implmenteren.
+ * Instructies: 
+ * Voeg dit stylesheet toe en niet direct de rijkshuisstijl stylesheet screen.css.
+ * Wijzig als ICT service niet in dit stylesheet, maar maak je eigen stylesheets voor eventuele correcties.
+ * Geef  benodigde wijzigingen door aan de Java/Webstraat om in latere versies voor B/CAO en je project te borgen.
+ </pre>
+ */
+ 
+ /**
+ * Import
+ *
+ * @section			Import van rijkshuistijl stylesheet(s)
+ */
+
+@import url("../../rijk/css/screen.css");
+
+
+ /*
+ *  Toevoegingen
+ * 
+ * @section			Toevoegingen style definities Rijks huisstijl
+ * @ since 2.0
+ */
+
+/* 
+ * toolbox 
+ * 
+ * @section Toevoegingen voor toolbox voor input buttons en iconenset.			
+ * @ since 2.0
+ * Toevoeging op de toolbox om input buttons als icoon weer te geven
+*/
+.toolbox input, .toolbox button{
+	background-image: url(../../rijk/css/skin/icons.png);
+	background-repeat: no-repeat;
+	height: 11px;
+	padding-left: 16px;
+	width: 12px;
+}
+
+.toolbox input.email {
+	background-position: left -147px;
+}
+
+.toolbox input.print {
+	background-position: left -184px;
+}
+
+.toolbox input.document {
+	background-position: left -221px;
+}
+
+.toolbox input.audio {
+	background-position: left -256px;
+}
+
+.toolbox input.play {
+	background-position: left -294px;
+}
+
+.toolbox input.table {
+	background-position: left -342px;
+}
+
+.toolbox input.edit {
+	background-position: left -597px;
+}
+
+.toolbox input.delete {
+	background-position: left -671px;
+}
+
+.toolbox input.zoom {
+	background-position: left -708px;
+}
+
+.toolbox input.star {
+	background-position: left -746px;
+}
+
+.toolbox input.author {
+	background-position: left -857px;
+}
+
+.toolbox input.group {
+	background-position: left -893px;
+}
+
+.toolbox input.lock {
+	background-position: left -930px;
+}
+
+.func_links ul li input {
+	text-decoration: none;
+	border: 0px;
+	background: none;
+	position: relative;
+	cursor: hand;
+	color: #535353;
+	font-size: 100%;
+	font-family: Verdana, Arial, sans-serif;
+	padding: 0.2em 0.9091em;
+}
+
+ /*
+ *  Correcties
+ * 
+ * @section			Correcties style definities Rijks huisstijl
+ * @ since 2.0
+ */
+ 
+.content_wrapper1{min-height: 500px;  }

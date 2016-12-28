@@ -1,0 +1,143 @@
+	<wicket:extend>
+		<h3>Maak een plantplaats </h3>
+		<font color="red"><span wicket:id="feedback" /></font>
+		<p>
+		<form wicket:id="maakPlantPlaatsForm">
+			<fieldset>
+			
+				<table cellpadding="3">
+					<tr>
+						<td align="right">Naam:*</td>
+						<td><input wicket:id="naam" type="text" /></td>
+					</tr>
+					<tr>
+						<td align="right">vierkantemeters:*</td>
+						<td><input wicket:id="vierkanteMeters" type="text" /></td>
+					</tr>
+					<tr>
+						<td align="right">NederlandsNaam</td>
+						<td><text wicket:id="plant.nederlandseNaam" type="text" /></td>
+					</tr>
+					
+				</table>
+				<br> 
+				<br> 
+				<input type="submit" name="Submit" value="Bewaar" /> 
+				<input wicket:id="backLink" type="submit" value="Cancel" />
+				
+	
+				<form wicket:id="maakPlantZoekForm">
+					<fieldset>
+					
+						<table cellpadding="6">
+							<tr>
+								<td>
+									<strong>Plant zoek gegevens</strong> 
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label>ned naam:</label> 
+									<br />
+									<input wicket:id="nederlandseNaam" type="text" />
+								</td>
+								
+								<td>
+									<label>Botanische Naam:</label> 
+									<br />
+									<input wicket:id="botanischeNaam" type="text" />
+								</td>
+								<td>
+									<label>Bladhoudend :</label> 
+									<br />
+									<span wicket:id="bladhoudend" id="bladhoudend"/>
+								</td>
+								<td>
+									<label>Bloeitijd:</label> 
+									<br />
+									<span wicket:id="bloeitijdLijst" id="bloeitijdLijst"/>
+								</td>
+								<td>
+									<label>Lichtbehoefte:</label> 
+									<br />
+									<span wicket:id="lichtbehoefteLijst" id="lichtbehoefteLijst"/>
+								</td>
+							</tr>
+							<tr>		
+								<td>
+									<label>Hoogte:</label> 
+									<br />
+									<span wicket:id="hoogteLijst" id="hoogteLijst"/>
+								</td>
+								<td>
+									<label>Grondsoort:</label> 
+									<br />
+									<span wicket:id="grondsoortLijst" id="grondsoortLijst"/>
+								</td>
+								<td>
+									<label>Kleur:</label> 
+									<br />
+									<span wicket:id="kleurLijst" id="kleurLijst"/>
+								</td>
+								<td>
+									<label>Plantsoort:</label> 
+									<br />
+									<span wicket:id="plantsoortLijst" id="plantsoortLijst"/>
+								</td>
+								<td>
+									<input type="submit" name="Submit" wicket:id="submitzoek" value="Zoek" /> 
+								</td>
+							</tr>
+							
+					
+						</table>
+					</fieldset>
+				</form>
+				<form wicket:id="kiesplantForm">
+					<fieldset>
+						<input type="submit" wicket:id="submitplantform" name="Submit" value="Kies plant" /> 
+						<table cellpadding="6">
+							<tr wicket:id="plantContainerLijst" >
+								<td>
+									<img wicket:id="planteen_image" class="plantenfoto"/><br/>
+									<span wicket:id="planteen_nederlandseNaam">message</span><br/>
+									<span wicket:id="planteen_beschrijving">message</span><br/>
+									<span wicket:id="planteen_hoogte">message</span><br/>
+									<span wicket:id="planteen_bloeitijd">message</span><br/>
+									<span wicket:id="planteen_grondsoort">message</span><br/>
+									<input type="checkbox" wicket:id="planteen_selected" id="planteen_selected">select</input> 
+								</td>
+								<td>
+									<img wicket:id="planttwee_image" class="plantenfoto"/>
+									<span wicket:id="planttwee_nederlandseNaam">message</span><br/>
+									<span wicket:id="planttwee_beschrijving">message</span><br/>	
+									<span wicket:id="planttwee_hoogte">message</span><br/>
+									<span wicket:id="planttwee_bloeitijd">message</span><br/>
+									<span wicket:id="planttwee_grondsoort">message</span><br/>
+									<input type="checkbox" wicket:id="planttwee_selected" id="planttwee_selected">select</input> 							
+								</td>
+								<td>
+									<img wicket:id="plantdrie_image" class="plantenfoto"/>
+									<span wicket:id="plantdrie_nederlandseNaam">message</span><br/>
+									<span wicket:id="plantdrie_beschrijving">message</span><br/>
+									<span wicket:id="plantdrie_hoogte">message</span><br/>
+									<span wicket:id="plantdrie_bloeitijd">message</span><br/>
+									<span wicket:id="plantdrie_grondsoort">message</span><br/>
+									<input type="checkbox" wicket:id="plantdrie_selected" id="plantdrie_selected">select</input>							
+								</td>
+							</tr>
+
+						</table>
+					</fieldset>
+
+					
+					
+				
+				</form>
+				
+			</fieldset>
+
+			
+	
+		</form>
+	</wicket:extend>

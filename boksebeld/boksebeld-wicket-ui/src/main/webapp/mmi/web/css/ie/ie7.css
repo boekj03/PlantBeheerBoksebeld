@@ -1,0 +1,73 @@
+/**
+ *  ---------------------------------------------------------------------------------------------------------
+ *              Ident: Belastingdienst - B/CAO 
+ *            Creator: Nando van Rijnberk
+ *          Copyright: (c) 2011 Belastingdienst / Centrum voor Applicatieontwikkeling en Onderhoud,
+ *                         All Rights Reserved.
+ *  ---------------------------------------------------------------------------------------------------------
+ *                                              |   Unpublished work. This computer program includes
+ *     De Belastingdienst                       |   Confidential, Properietary Information and is a
+ *     Postbus 9050                             |   trade Secret of the Belastingdienst. No part of
+ *     7300 GM  Apeldoorn                       |   this file may be reproduced or transmitted in any
+ *     The Netherlands                          |   form or by any means, electronic or mechanical,
+ *     http://belastingdienst.nl/               |   for the purpose, without the express written
+ *                                              |   permission of the copyright holder.
+ *  ---------------------------------------------------------------------------------------------------------
+ */
+ 
+ /**
+ * ie7.css
+ *
+ * Definitie toevoegingen op Rijksoverheid huistijlcorrecties voor Internet Explorer 6.
+ *
+ * @version			2.0.0
+ * @date			2011-08-30
+ * @lastmodified	2010-04-31 10:26
+ * @author			Nando van Rijnberk
+ * @project			Webstraat; mmi: Invoering huistijl Rijksoverheid.
+ * @link			http://
+ * @cssdoc			version 1.0-pre
+ * @ since 			2.0
+ *
+ * <pre>
+ * Dit stylesheet zorgt voor de ontkoppeling van de rijkshuisstijl sheet; ie7.css.
+ * Het bevat, toevoegingen benodigde correcties op de standaard rijksshuisstijl correcties stylesheets om gewenste functionaliteit voor B/CAO java web applicaties te implmenteren.
+ * Instructies: 
+ * Voeg dit stylesheet niet standalone toe, maar maak gebruik van de standaard bouwsteen 'html-head-css.jsp'.
+ * Deze voegt naast dit stylesheet ook nog andere noodzakelijke stijlsheets toe in de juiste volgorde. 
+ * Wijzig als ICT service niet in dit stylesheet, maar maak je eigen stylesheets voor eventuele correcties.
+ * Geef  benodigde wijzignen door aan de Java/Webstraat om deze wijzigingen voor de toekomst en B/CAO te borgen.
+ </pre>
+ */
+
+ /**
+ * Import
+ *
+ * @section			Import van rijkshuistijl stylesheet(s)
+ */
+
+@import url("../../../rijk/css/ie/ie7.css");
+
+
+/** 
+ * IE7 styles addities voor ANR
+ * Dit zijn toevoegingen specifiek voor ANR in IE7, makkelijk onm die heir te zetten zodat je niet voor ieder browser nog een ANR
+ * stylesheet krijgt. 	 
+ *
+ * @section			IE7 (en lager) specifieke toevoegingen style definities.
+ */
+ 
+/* Zorgt ervoor dat links die gepresenteerd worden als button goeg vertikaal uitgelijnd worden.*/   
+form a.submitlike {vertical-align: 0.3em;}
+
+/** 
+ * IE7 styles addities
+ * 
+ * @section			IE7 (en lager) specifieke toevoegingen style definities.
+ */
+ 
+ /** 
+ * IE7 styles wijzigingen
+ * 
+ * @section			IE7 (en lager) specifieke wijzigingen style definities.
+ */

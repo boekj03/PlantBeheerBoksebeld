@@ -1,0 +1,86 @@
+
+	<wicket:extend>
+	
+		<wicket:child />
+		<font color="red"><span wicket:id="feedback" /></font>
+		<p>
+		<form wicket:id="maakPlantForm">
+			<fieldset>
+			
+				<table cellpadding="3">
+					<tr>
+						<td>
+							<strong>Plant gegevens</strong> 
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td align="right">BotanischeNaam:*</td>
+						<td><input wicket:id="botanischeNaam" type="text" /></td>
+					</tr>
+					
+					<tr>
+						<td align="right">Code:*</td>
+						<td><input wicket:id="code" type="text" /></td>
+					</tr>
+					
+					<tr>
+						<td align="right">NederlandseNaam:*</td>
+						<td><input wicket:id="nederlandseNaam" type="text" /></td>
+					</tr>
+
+					<tr>
+						<td align="right">beschrijving:*</td>
+						<td><textarea  wicket:id="beschrijving" rows="6" cols="40" /></td>
+					</tr>
+					
+					<tr>
+						<td align="right">hoogte:</td>
+						<td><select wicket:id="hoogte" id="hoogte"/></td>
+					</tr>
+					
+					<tr>
+						<td align="right">bloeitijd:</td>
+						<td><span wicket:id="bloeitijd" id="bloeitijd"/></td>
+					</tr>
+					
+					<tr>
+						<td align="right">grondsoort:</td>
+						<td><select wicket:id="grondsoort" id="grondsoort"/></td>
+					</tr>
+					<tr>
+						<td align="right">kleur:</td>
+						<td><select wicket:id="kleur" id="kleur"/></td>
+					</tr>
+					<tr>
+						<td align="right">lichtbehoefte:</td>
+						<td><select wicket:id="lichtbehoefte" id="lichtbehoefte"/></td>
+					</tr>				
+					
+					<tr>
+						<td align="right">plantsoort:</td>
+						<td><select wicket:id="plantsoort" id="plantsoort"/></td>
+					</tr>
+					
+					<tr>
+						<td align="right">Foto Plant:</td>
+						<td><img wicket:id="image" class="plantenfoto"/></td>
+					</tr>
+				</table>
+				
+				<form wicket:id="form">
+					<p>
+						<label>Select file :</label> 
+						<input wicket:id="fileUpload" size="40" type="file"/>
+						<input type="submit" wicket:id="uploadsubmit" value="upload"/>
+						
+					</p>
+				</form>
+			</fieldset>
+
+			<br> 
+			<input type="submit"  wicket:id="mainsubmit" name="Submit" value="Submit" /> 
+			<input wicket:id="backLink" type="submit" value="Cancel" />
+		</form>
+	</wicket:extend>
+	

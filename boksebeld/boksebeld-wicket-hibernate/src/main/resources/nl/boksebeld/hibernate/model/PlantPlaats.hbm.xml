@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 21.04.2014 23:20:04 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="nl.boksebeld.domein.plaats.PlantPlaats" table="PlantPlaats" lazy="false">
+        <id name="id" type="int">
+            <column name="PLANTPLAATS_ID" />
+            <generator class="native" />
+        </id>
+        
+        <property name="naam" type="java.lang.String">
+            <column name="NAAM" />
+        </property>
+        
+         <property name="vierkanteMeters" type="java.lang.Double">
+            <column name="VIERKANTEMETERS" />
+        </property>
+        
+     	<many-to-one name="beplantingsPlan" class="nl.boksebeld.domein.plaats.BeplantingsPlan" fetch="select">
+            <column name="BEPLANTINGSPLAN_ID" not-null="true"/>
+        </many-to-one>
+   
+   		<many-to-one name="plant" column="PLANT_ID" unique="true" 
+       class="nl.boksebeld.domein.plant.Plant" not-null="false"/>
+		   
+    	
+    </class>
+</hibernate-mapping>

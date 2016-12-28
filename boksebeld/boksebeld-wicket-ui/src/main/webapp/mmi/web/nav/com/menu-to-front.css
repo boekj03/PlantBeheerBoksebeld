@@ -1,0 +1,17 @@
+/** 
+ . menu-to-front.css 
+ . 
+ . 
+ */
+ 
+ /**
+ *  Layering
+ * 
+ * Zorgt ervoor dat het menu voor alle layers en formulier input en select komt..
+ *
+ * @section			Toevoeging op Layering Rijks huisstijl
+ * @ since 2.0
+ */
+ .content_wrapper1{z-index: -1;  }
+
+

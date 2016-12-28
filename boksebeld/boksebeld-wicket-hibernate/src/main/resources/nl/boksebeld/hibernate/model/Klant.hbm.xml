@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 21.04.2014 23:20:04 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="nl.boksebeld.domein.klant.Klant" table="Klanten">
+        <id name="id" type="int">
+            <column name="KLANT_ID" />
+            <generator class="native" />
+        </id>
+        
+        <property name="voornaam" type="java.lang.String">
+            <column name="VOORNAAM" />
+        </property>
+        
+        <property name="achternaam" type="java.lang.String">
+            <column name="ACHTERNAAM" />
+        </property>
+        
+        <property name="straat" type="java.lang.String">
+            <column name="STRAAT" />
+        </property>
+        
+         <property name="huisnummer" type="java.lang.String">
+            <column name="HUISNUMMER" />
+        </property>
+        
+         <property name="postcode" type="java.lang.String">
+            <column name="POSTCODE" />
+        </property>
+        
+         <property name="plaats" type="java.lang.String">
+            <column name="PLAATS" />
+        </property>
+        
+         <property name="klantennummer" type="java.lang.String">
+            <column name="KLANTENNUMMER" />
+        </property>
+        
+        <property name="telefoonnummer" type="java.lang.String">
+            <column name="TELEFOONNUMMER" />
+        </property>
+        
+        <property name="mailadres" type="java.lang.String">
+            <column name="MAILADRES" />
+        </property>
+   
+    </class>
+</hibernate-mapping>

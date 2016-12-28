@@ -1,0 +1,43 @@
+	<wicket:extend>
+	<div class="hoofd_content">
+	
+		<h3>Beplantings plan details <span wicket:id="plannaam" type="text"></span></h3>
+		<font color="red"><span wicket:id="feedback">message</span></font>
+
+		<p>
+		<div class="table">
+		<table>
+			<thead>
+			<tr>
+				<td bgcolor="lightgrey"><b>Plant plaats Naam</b></td>
+				<td bgcolor="lightgrey"><b>aantal m2</b></td>
+				<td bgcolor="lightgrey"><b>Ned naam plant</b></td>
+			
+				<td bgcolor="lightgrey"></td>
+				<td bgcolor="lightgrey"></td>
+			</tr>
+			</thead>
+			<tbody>
+			<tr wicket:id="plantPlaatsLijst" class="mark">
+				<td><text wicket:id="naam" type="text" id="naam"/></td>
+				<td><text wicket:id="vierkantemeters" type="text" id="vierkantemeters"/></td> 
+				<td><text wicket:id="plant.nederlandseNaam" type="text" /></td>
+				<td class="prullebak"><img wicket:id="updateimage"/></td>
+				<td class="prullebak"><img wicket:id="verwijderimage"/></td>	
+			</tr>
+			</tbody>
+		</table>
+		</div>
+		</p>
+
+		<span wicket:id="pageNavigator" />
+
+		<p>
+			<input wicket:id="maakNieuwePlantPlaatsLink" type="submit"
+				value="Nieuwe plaats" />
+			<input wicket:id="addplanten" type="submit" value="Select planten" />
+			<br>
+
+		</p>
+	</div>
+	</wicket:extend>

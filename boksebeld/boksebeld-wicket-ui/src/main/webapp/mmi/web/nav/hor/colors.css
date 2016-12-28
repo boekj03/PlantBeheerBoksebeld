@@ -1,0 +1,84 @@
+/**
+ *  ---------------------------------------------------------------------------------------------------------
+ *              Ident: Belastingdienst - B/CAO 
+ *            Creator: Nando van Rijnberk
+ *          Copyright: (c) 2011 Belastingdienst / Centrum voor Applicatieontwikkeling en Onderhoud,
+ *                         All Rights Reserved.
+ *  ---------------------------------------------------------------------------------------------------------
+ *                                              |   Unpublished work. This computer program includes
+ *     De Belastingdienst                       |   Confidential, Properietary Information and is a
+ *     Postbus 9050                             |   trade Secret of the Belastingdienst. No part of
+ *     7300 GM  Apeldoorn                       |   this file may be reproduced or transmitted in any
+ *     The Netherlands                          |   form or by any means, electronic or mechanical,
+ *     http://belastingdienst.nl/               |   for the purpose, without the express written
+ *                                              |   permission of the copyright holder.
+ *  ---------------------------------------------------------------------------------------------------------
+ */
+ 
+ /**
+ * colors.css.
+ *
+ * Teogevoegde definities voor 3 beschikbare Beleastingdienst merk identiteits keluren.
+ *
+ * @version			1.0.1
+ * @date			2011-08-14
+ * @lastmodified	2010-04-30 10:26
+ * @author			Nando van Rijnberk
+ * @project			Webstraat; mmi: Invoering huistijl Rijksoverheid.
+ * @link			http://
+ * @cssdoc			version 1.0-pre
+ * @ since 			2.0
+ *
+ * <pre>
+ * Dit stylesheet zorgt voor de kleuren van menu';s bij gebruik van uitvouwbare menu navigatie en is een uitbreiding op de color.css van de rijksoverheid.
+ * Dit stylesheet bevat, toevoeingen en benodigde correcties op de standaard rijksshuisstijl stylesheets om gewenste functionaliteit voor B/CAO java web applicaties te implmenteren.
+ * Instructies: 
+ * Voeg dit stylesheet niet direct toe.
+ * Pas dus juiste colordefintie azure, dark_green of red toe in <div class="container azure"> in de pagina.  
+ * Wijzig als ICT service niet in dit stylesheet, maar maak je eigen stylesheets voor eventuele correcties.
+ * Geef  benodigde wijzigingen door aan de Java/Webstraat om in latere versies voor B/CAO en je project te borgen.
+ </pre>
+ */
+ 
+/*
+* Douane navigatie colors
+*
+* @section	kleuren voor de hoofdnavigatie voor douane.		
+*/
+.dark_green .nav_bar{}
+.dark_green .nav_bar li a{ color: #d9ebf7;}
+.dark_green .nav_bar li a:hover { background: #dfe6e1; color: #275937;}
+.dark_green .nav_bar li ul{}
+.dark_green .nav_barli ul li {}
+.dark_green .nav_bar li ul li a {color: #275937;  background: #dfe6e1;}
+.dark_green .nav_bar li ul li a:hover {	background: #275937; color: #dfe6e1;}
+
+/* .dark_green .nav_bar .func_links ul li a{ color: #275937;}*/
+		
+/*
+* Belastingdienst navigatie colors
+*
+* @section	kleuren voor de hoofdnavigatie voor Belastingdienst.		
+*/
+.azure .nav_bar{}
+.azure .nav_bar li a{color: #d9ebf7;}
+.azure .nav_bar li a:hover {background: #d9ebf7; color: #007bc7;}
+.azure .nav_bar li ul{} 
+.azure .nav_bar li ul li {}		 		 
+.azure .nav_bar li ul li a {color: #007bc7; background: #d9ebf7}
+.azure .nav_bar li ul li a:hover {background: #007bc7;	color: #d9ebf7}
+
+/*
+* Toeslagen navigatie colors
+*
+* @section	kleuren voor de hoofdnavigatie voor Toeslagen.	
+* Bos0m09 sluithaakje toegevoegd.	
+*/
+.red .nav_bar {}
+.red .nav_bar  li a{color: #d9ebf7;}
+.red .nav_bar  li a:hover {color: #d52b1e; background: #f9dfdd;}
+.red .nav_bar  li ul{}
+.red .nav_bar  li ul li {}
+.red .nav_bar  li ul li a {color: #d52b1e; background: #f9dfdd;}
+.red .nav_bar  li ul li a:hover {background: #d52b1e;color: #f9dfdd;}
+

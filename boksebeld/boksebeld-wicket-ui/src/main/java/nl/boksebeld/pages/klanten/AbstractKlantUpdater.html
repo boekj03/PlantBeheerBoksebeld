@@ -1,0 +1,69 @@
+	<wicket:extend>
+		<wicket:child />
+		<font color="red"><span wicket:id="feedback" /></font>
+		<p>
+		<form wicket:id="maakKlantForm">
+			<fieldset>
+			
+				<table cellpadding="3">
+					<tr>
+						<td>
+							<strong>Naw gegevens klant</strong> 
+						</td>
+					</tr>
+					<tr>
+						<td align="right">Voornaam:*</td>
+						<td><input wicket:id="voornaam" type="text" /></td>
+					</tr>
+
+					<tr>
+						<td align="right">Achternaam:*</td>
+						<td><input wicket:id="achternaam" type="text" /></td>
+					</tr>
+					<tr>
+						<td>
+							<strong>Adres</strong> 
+						</td>
+					</tr>	
+					<tr>
+						<td align="right">Straat:</td>
+						<td><input wicket:id="straat" type="text" /></td>
+					</tr>
+					<tr>
+						<td align="right">Huisnummer:</td>
+						<td><input wicket:id="huisnummer" type="text" /></td>
+					</tr>
+					<tr>
+						<td align="right">Postcode:</td>
+						<td><input wicket:id="postcode" type="text" /></td>
+					</tr>
+					<tr>
+						<td align="right">Plaats:</td>
+						<td><input wicket:id="plaats" type="text" /></td>
+					</tr>
+					<tr>
+						<td>
+							<strong>Overig gegevens</strong> 
+						</td>
+					</tr>
+					<tr>
+						<td align="right">Klantennummer:</td>
+						<td><input wicket:id="klantennummer" type="text" /></td>
+					</tr>
+					<tr>
+						<td align="right">Telefoonnummer:</td>
+						<td><input wicket:id="telefoonnummer" type="text" /></td>
+					</tr>
+					<tr>
+						<td align="right">Mailadres:</td>
+						<td><input wicket:id="mailadres" type="text" /></td>
+					</tr>
+				
+				</table>
+			</fieldset>
+
+			<br> 
+			<input type="submit" name="Submit" value="Submit" /> 
+			<input wicket:id="backLink" type="submit" value="Cancel" />
+		</form>
+	</wicket:extend>

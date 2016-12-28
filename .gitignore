@@ -13,8 +13,8 @@ target
 *.zip
 
 #IDE
-.project
-.classpath
+#.project
+#.classpath
 .settings
 .factorypath
 .apt_generated

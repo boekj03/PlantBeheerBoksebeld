@@ -1,0 +1,85 @@
+/**
+ *  ---------------------------------------------------------------------------------------------------------
+ *              Ident: Belastingdienst - B/CAO 
+ *            Creator: Nando van Rijnberk
+ *          Copyright: (c) 2011 Belastingdienst / Centrum voor Applicatieontwikkeling en Onderhoud,
+ *                         All Rights Reserved.
+ *  ---------------------------------------------------------------------------------------------------------
+ */
+ /**
+ *  ver-nav-style.css
+ *
+ *  Stylesheet voor dynamische verticale subnavigatie met alleen css. 
+ *  Alleen de formatting en niet de zichtbaarheid/display wordt hier ingesteld.
+ *
+ * @version			1.0.1
+ * @date			2011-08-14
+ * @lastmodified	2010-04-30 10:26
+ * @author			Nando van Rijnberk
+ * @project			Webstraat; mmi: Invoering huistijl Rijksoverheid.
+ * @link			http://
+ * @cssdoc			version 1.0-pre
+ * @ since 			2.0
+ *
+ * <pre>
+ * Dit stylesheet zorgt voor de stijlen voor de horizontale navigatie.
+ * Samen met het bijbehorende JavaScript en menustructuur zorgen ze voor een uitklapbaar horizontaal menu.
+ *
+ * Instructies: 
+ * Voeg dit stylesheet niet direct toe voor een uitklapbaar verticale navigatie.
+ * Gebruik de daarvoor bedoelde jsp fragment in de mmi bouwstenen.
+ * Deze bouwsteen voegt alleen benodgde stylesheets en javascript libraries toe. 
+ *
+ </pre>
+ */
+
+
+/**
+* @section
+*/
+.nav_sub ul li a{
+	background: url(../../../rijk/css/skin/arrows.png) 1.8em 7px no-repeat; padding: 0.2em 1em 0.2em 2.8em; width: 17.6em; 
+}	 
+
+.nav_sub ul li ul li a{
+	background: url(../../../rijk/css/skin/arrows.png) 2.8em 7px no-repeat; padding: 0.2em 1em 0.2em 3.8em; width: 16.6em; 
+}
+
+.nav_sub ul li ul li ul li a{
+	background: url(../../../rijk/css/skin/arrows.png) 3.8em 7px no-repeat; padding: 0.2em 1em 0.2em 4.8em; width: 15.6em; 
+}
+
+.nav_sub ul li ul li ul li ul li a{
+	background: url(../../../rijk/css/skin/arrows.png) 4.8em 7px no-repeat; padding: 0.2em 1em 0.2em 5.8em; width: 14.6em;
+}
+
+.nav_sub ul li ul li ul li ul li ul li a{
+	background: url(../../../rijk/css/skin/arrows.png) 5.8em 7px no-repeat; padding: 0.2em 1em 0.2em 6.8em; width: 13.6em;
+}
+
+.nav_sub ul li a{
+	background: url(../../../rijk/css/skin/arrows.png) 1.8em 7px no-repeat; padding: 0.2em 1em 0.2em 2.8em; width: 17.6em; 
+}	 
+
+.nav_sub ul li ul li a:hover{
+	background-position: 1.8em -82px; 
+}
+
+.nav_sub ul li ul li ul li a:hover{
+	background-position: 2.8em -82px; 
+}
+
+.nav_sub ul li ul li ul li ul li a:hover{
+	background-position: 3.8em -82px; 
+}
+
+.nav_sub ul li ul li ul li ul li ul li a:hover{
+	background-position: 4.8em -82px; 
+}
+
+ .nav_sub ul li a:active ul{
+  	display: block;
+  }
+
+
+}

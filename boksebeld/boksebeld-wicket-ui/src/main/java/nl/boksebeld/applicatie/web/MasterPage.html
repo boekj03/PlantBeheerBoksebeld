@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+<title><wicket:message key="applicatieTitel" /></title>
+<link rel="stylesheet" href="mmi/web/css/screen.css" type="text/css" media="screen" />
+
+<link rel="stylesheet" href="mmi/web/css/print.css" type="text/css" media="print" />
+
+<link rel="stylesheet" href="mmi/web/nav/hor/colors.css" type="text/css" media="screen" />
+
+<link rel="shortcut icon" href="mmi/rijk/favicon.ico" type="image/x-icon" />
+</head>
+
+<body id="content">
+	<div class="container purple">
+		<div class="header">
+			
+			<h1 class="branding">
+				<img src="mmi/rijk/logos/Bladgoud-tuinen.png" alt="Homepagina" height="87" width="100" />
+			</h1>
+			<div class="title_bar">
+				<h1>
+					<wicket:message key="applicatieHeader" />
+				</h1>
+			</div>
+			<div class="nav_bar">
+				<ul class="nav_main">
+					<li><wicket:link><a href="klanten"><wicket:message key="klantenPaginaLink" /></a></wicket:link></li>
+					<li><wicket:link><a href="planten"><wicket:message key="plantenPaginaLink" /></a></wicket:link></li>
+					<li><wicket:link><a href="plannen"><wicket:message key="plannenPaginaLink" /></a></wicket:link></li>
+				</ul>
+			</div>
+			<span></span>
+		</div>
+		<div class="content_wrapper1">
+			<div class="content_wrapper2">
+				<div class="content">
+					<!-- START : CONTENT -->
+					<div class="" id="hoofd_content">
+						<div id="content">
+							<wicket:child />
+						</div>
+					</div>
+					<!-- END : CONTENT -->
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="ref">
+				<img src="mmi/rijk/logos/RO_footer.png" alt="" height="25" width="500" />
+			</div>
+			<span></span>
+		</div>
+	</div>
+</body>
+</html>

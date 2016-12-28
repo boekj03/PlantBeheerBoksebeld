@@ -1,0 +1,41 @@
+	<wicket:extend>
+	<div id="bd">
+	
+		<h3>Planten overzicht</h3>
+		<font color="red"><span wicket:id="feedback">message</span></font>
+
+		<p>
+		
+		<table >
+
+			<tr>
+				<th bgcolor="lightgrey"><b>Naam</b></th>
+				<th bgcolor="lightgrey"><b>Beschrijving</b></th>
+				<th bgcolor="lightgrey"><b>foto</b></th>
+				<th bgcolor="lightgrey"></th>
+				<th bgcolor="lightgrey"></th>
+			</tr>
+
+			<tr wicket:id="plantLijst" >
+				<td><span wicket:id="nederlandseNaam">message</span></td>
+				<td><span wicket:id="beschrijving">message</span></td>
+				<td class="plantenfoto"> <img wicket:id="image" class="plantenfoto"/></td>
+				<td class="prullebak"><img wicket:id="updateimage"/></td>
+				<td class="prullebak"><img wicket:id="verwijderimage"/></td>
+				
+			</tr>
+
+		</table>
+		</p>
+
+		<span wicket:id="pageNavigator" />
+
+		<p>
+			<input wicket:id="maakNieuwePlantLink" type="submit"
+				value="Nieuwe plant" /><br>
+			<br>
+
+		</p>
+	</div>
+	</wicket:extend>
+

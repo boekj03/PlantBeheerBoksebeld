@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<entry key="applicatieTitel">Boksebeld Klanten Beheer</entry>
+<entry key="applicatieHeader">Boksebeld Klanten Beheer</entry>
+<entry key="klantenPaginaLink">Overzicht van klanten</entry>
+<entry key="plantenPaginaLink">Planten database</entry>
+<entry key="selectPlantenPaginaLink">Stel zoek criteria in</entry>
+<entry key="plannenPaginaLink">Beplantingsplannen</entry>
+</properties>

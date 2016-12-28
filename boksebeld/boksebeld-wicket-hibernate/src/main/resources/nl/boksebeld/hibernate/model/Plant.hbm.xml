@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 21.04.2014 23:20:04 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="nl.boksebeld.domein.plant.Plant" table="Planten" lazy="false">
+        <id name="id" type="int">
+            <column name="PLANT_ID" />
+            <generator class="native" />
+        </id>
+        
+        <property name="botanischeNaam" type="java.lang.String">
+            <column name="BOTANISCHENAAM" />
+        </property>
+        
+        <property name="code" type="java.lang.String">
+            <column name="CODE" />
+        </property>
+        
+        <property name="nederlandseNaam" type="java.lang.String">
+            <column name="NEDERLANDSNAAM" />
+        </property>
+        
+        <property name="aantalPerMeter" type="java.lang.Double">
+            <column name="AANTALPERMETER" />
+        </property>
+        
+         <property name="beschrijving" type="java.lang.String">
+            <column name="BESCHRIJVING" />
+        </property>
+        
+        <property name="bladhoudend" type="java.lang.Boolean">
+            <column name="BLADHOUDEND" />
+        </property>
+        
+         <property name="bloeitijd" >
+          	<column name="BLOEITIJD" />
+         	 <type name="org.hibernate.type.EnumType">
+       		 	<param name="enumClass">nl.boksebeld.domein.plant.Bloeitijd</param>
+       		 	<param name="type">12</param>
+    		</type>
+        </property>
+        
+         <property name="grondsoort" >
+          	<column name="GRONDSOORT" />
+         	 <type name="org.hibernate.type.EnumType">
+       		 	<param name="enumClass">nl.boksebeld.domein.plant.Grondsoort</param>
+       		 	<param name="type">12</param>
+    		</type>
+        </property>
+        
+         <property name="hoogte" >
+          	<column name="HOOGTE" />
+         	 <type name="org.hibernate.type.EnumType">
+       		 	<param name="enumClass">nl.boksebeld.domein.plant.Hoogte</param>
+       		 	<param name="type">12</param>
+    		</type>
+        </property>
+        
+        
+         <property name="kleur" >
+          	<column name="KLEUR" />
+         	 <type name="org.hibernate.type.EnumType">
+       		 	<param name="enumClass">nl.boksebeld.domein.plant.Kleur</param>
+       		 	<param name="type">12</param>
+    		</type>
+        </property>
+        
+        
+         <property name="lichtbehoefte" >
+          	<column name="LICHTBEHOEFTE" />
+         	 <type name="org.hibernate.type.EnumType">
+       		 	<param name="enumClass">nl.boksebeld.domein.plant.Lichtbehoefte</param>
+       		 	<param name="type">12</param>
+    		</type>
+        </property>
+        
+          <property name="plantsoort" >
+          	<column name="PLANTSOORT" />
+         	 <type name="org.hibernate.type.EnumType">
+       		 	<param name="enumClass">nl.boksebeld.domein.plant.Plantsoort</param>
+       		 	<param name="type">12</param>
+    		</type>
+        </property>
+        
+         <property name="image" type="binary">
+            <column name="IMAGE" />
+        </property>
+     
+   
+    </class>
+</hibernate-mapping>
