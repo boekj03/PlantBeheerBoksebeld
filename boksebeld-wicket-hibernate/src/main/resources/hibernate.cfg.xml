@@ -5,11 +5,18 @@
 <hibernate-configuration>
   <session-factory>
     <!-- Database connection settings, Connect to HSQL, IN Memory  -->
+    <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+    
+    <property name="connection.url">mysql://mysql:3306/</property>
+    <property name="connection.username">boksw00</property>
+    <property name="connection.password">WB1970Hol3</property>
+     
+  	<!--   Database connection settings, Connect to HSQL, IN Memory 
     <property name="dialect">org.hibernate.dialect.HSQLDialect</property>
-    <property name="connection.driver_class">org.hsqldb.jdbcDriver</property>
-    <property name="connection.url">jdbc:hsqldb:hsql://localhost/addressbook</property>
+    <property name="connection.driver_class">org.hsqldb.jdbcDriver</property> <property name="connection.url">jdbc:hsqldb:hsql://localhost/addressbook</property>
     <property name="connection.username">sa</property>
-    <property name="connection.password"></property>
+    <property name="connection.password"></property> -->
 
     <!-- JDBC connection pool (use the built-in) -->
     <property name="connection.pool_size">1</property>
