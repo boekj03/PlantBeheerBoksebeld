@@ -8,7 +8,7 @@
     <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
     
-    <property name="connection.url">jdbc:mysql://mysql:3306/beheerdb</property>
+    <property name="connection.url">jdbc:mysql://mysql:3306/beheerdb?jdbcCompliantTruncation=false</property>
     <property name="connection.username">boksw00</property>
     <property name="connection.password">WB1970Hol3</property>
      
