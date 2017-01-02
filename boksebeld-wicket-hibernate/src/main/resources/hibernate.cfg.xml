@@ -7,8 +7,8 @@
     <!-- Database connection settings, Connect to HSQL, IN Memory  -->
     <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-    
-    <property name="connection.url">jdbc:mysql://mysql:3306/beheerdb?jdbcCompliantTruncation=true</property>
+<!--     autoreconnect voor connectie probleem -->
+    <property name="connection.url">jdbc:mysql://mysql:3306/beheerdb?autoReconnect=true</property>
     <property name="connection.username">boksw00</property>
     <property name="connection.password">WB1970Hol3</property>
      
@@ -28,6 +28,11 @@
     <property name="hbm2ddl.auto">update</property>
     <!-- Enable Hibernate's automatic session context management -->
     <property name="current_session_context_class">thread</property>
+ 
+<!--     voor een probleem met com.mysql.jdbc.exceptions.jdbc4.CommunicationsException:  -->
+<!--     The last packet successfully received from the server was -->
+
+    <property name="hibernate.connection.release_mode">after_transaction</property>
     
    	<mapping resource="nl/boksebeld/hibernate/model/User.hbm.xml"></mapping>
     <mapping resource="nl/boksebeld/hibernate/model/Klant.hbm.xml"></mapping>
