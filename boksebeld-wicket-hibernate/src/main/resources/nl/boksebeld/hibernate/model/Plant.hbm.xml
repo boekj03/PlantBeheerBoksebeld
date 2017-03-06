@@ -3,6 +3,10 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 21.04.2014 23:20:04 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
+  		<typedef name="Bloeitijd" class="org.hibernate.type.EnumType">
+  			<param name="enumClass">nl.boksebeld.domein.plant.Bloeitijd</param>
+  			<param name="type">12</param>
+		</typedef>
     <class name="nl.boksebeld.domein.plant.Plant" table="Planten" lazy="false">
         <id name="id" type="int">
             <column name="PLANT_ID" />
@@ -29,18 +33,15 @@
             <column name="BESCHRIJVING" />
         </property>
         
-        <property name="bladhoudend" type="java.lang.Boolean">
+        <property name="bladhoudend">
             <column name="BLADHOUDEND" />
-        </property>
-        
-         <property name="bloeitijd" >
-          	<column name="BLOEITIJD" />
          	 <type name="org.hibernate.type.EnumType">
-       		 	<param name="enumClass">nl.boksebeld.domein.plant.Bloeitijd</param>
+       		 	<param name="enumClass">nl.boksebeld.domein.plant.Bladhoudend</param>
        		 	<param name="type">12</param>
     		</type>
         </property>
         
+             
          <property name="grondsoort" >
           	<column name="GRONDSOORT" />
          	 <type name="org.hibernate.type.EnumType">
@@ -86,7 +87,15 @@
          <property name="image" type="binary">
             <column name="IMAGE" />
         </property>
-     
+        
+        
+        <set name="bloeitijdLijst" table="Bloeitijd_Maand" lazy="false">
+            <key column="ID" not-null="true"/>
+            <element type="Bloeitijd" column="Bloeitijd"/>
+        </set>
+        
+        
+      
    
     </class>
 </hibernate-mapping>

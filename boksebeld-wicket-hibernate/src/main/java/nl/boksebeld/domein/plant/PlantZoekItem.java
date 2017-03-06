@@ -19,8 +19,9 @@ public class PlantZoekItem implements Serializable {
 	private String code;
 
 	private String nederlandseNaam;
+	private String beschrijving;
 	private List<Hoogte> hoogteLijst = new ArrayList<Hoogte>();
-	private Boolean bladhoudend;
+	private List<Bladhoudend> bladhoudendLijst = new ArrayList<Bladhoudend>();
 
 	private List<Bloeitijd> bloeitijdLijst = new ArrayList<Bloeitijd>();
 	private List<Grondsoort> grondsoortLijst = new ArrayList<Grondsoort>();
@@ -60,16 +61,12 @@ public class PlantZoekItem implements Serializable {
 		this.hoogteLijst.add(hoogteItem);
 	}
 
-	public Boolean getBladhoudend() {
-		return bladhoudend;
+	public List<Bladhoudend> getBladhoudendLijst() {
+		return bladhoudendLijst;
 	}
 
-	public Boolean isBladhoudend() {
-		return bladhoudend;
-	}
-
-	public void setBladhoudend(Boolean bladhoudend) {
-		this.bladhoudend = bladhoudend;
+	public void addHoogte(Bladhoudend bladhoudendItem) {
+		this.bladhoudendLijst.add(bladhoudendItem);
 	}
 
 	public List<Bloeitijd> getBloeitijdLijst() {
@@ -110,6 +107,14 @@ public class PlantZoekItem implements Serializable {
 
 	public void addLichtbehoefte(Lichtbehoefte lichtbehoefte) {
 		this.lichtbehoefteLijst.add(lichtbehoefte);
+	}
+
+	public String getBeschrijving() {
+		return beschrijving;
+	}
+
+	public void setBeschrijving(String beschrijving) {
+		this.beschrijving = beschrijving;
 	}
 
 }

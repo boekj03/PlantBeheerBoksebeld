@@ -3,18 +3,20 @@ package nl.boksebeld.hibernate;
 public class PlantLijstZoeken {
 	//
 	// @Test
-	// @Ignore
+	//
 	// public void zoekPlantOpnaamTest() {
-	// // Plant plant = new Plant();
-	// // plant.setNederlandseNaam("plant met ned naam");
 	// try {
 	// // HibernateUtil.save(plant);
 	//
 	// PlantZoekItem pzi = new PlantZoekItem();
-	// pzi.setNederlandseNaam("Rode Roos");
+	// // pzi.setNederlandseNaam("plant");
+	// // pzi.getBloeitijdLijst().add(Bloeitijd.JANUARI);
 	// List<Plant> plantLijst = HibernateUtil.getPlantLijst(pzi);
+	//
 	// List list = HibernateUtil.getList(Plant.class);
+	// System.out.println(plantLijst.size());
 	// System.out.println(list.size());
+	//
 	// Assert.assertEquals(1, plantLijst.size());
 	// } catch (Exception ex) {
 	// ex.printStackTrace();

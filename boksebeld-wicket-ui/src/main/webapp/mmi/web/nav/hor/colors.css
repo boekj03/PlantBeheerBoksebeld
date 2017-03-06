@@ -82,3 +82,16 @@
 .red .nav_bar  li ul li a {color: #d52b1e; background: #f9dfdd;}
 .red .nav_bar  li ul li a:hover {background: #d52b1e;color: #f9dfdd;}
 
+
+.bkg-default { background-color: transparent; }
+.bkg-green { background-color: green; }
+.bkg-red { background-color: red; }
+
+.bkg-wit { background-color: white;}
+.bkg-blauw { background-color: blue; }
+.bkg-paars { background-color: purple; }
+.bkg-violet { background-color: violet;}
+.bkg-rood { background-color: red; }
+.bkg-geel { background-color: yellow; }
+.bkg-oranje { background-color: orange;}
+.bkg-roze { background-color: pink;}

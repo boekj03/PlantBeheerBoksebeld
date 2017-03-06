@@ -91,7 +91,7 @@ public abstract class AbstractKlantUpdater extends MasterPage {
 			// Pass success message to next page:
 			getSession().info("The klant '" + klant.getVoornaam() + "' was saved!");
 
-			setResponsePage(new KlantenPagina());
+			setResponsePage(KlantenPagina.class);
 
 		}
 
@@ -107,7 +107,7 @@ public abstract class AbstractKlantUpdater extends MasterPage {
 			 */
 			@Override
 			public void onClick() {
-				setResponsePage(new KlantenPagina());
+				setResponsePage(KlantenPagina.class);
 			}
 		};
 	}

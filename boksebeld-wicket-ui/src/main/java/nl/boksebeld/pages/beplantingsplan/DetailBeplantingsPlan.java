@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxEventBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.basic.Label;
@@ -22,10 +23,13 @@ import org.apache.wicket.util.resource.FileResourceStream;
 import org.apache.wicket.util.resource.IResourceStream;
 
 import nl.boksebeld.applicatie.excel.BeplantingsPlanToExcel;
+import nl.boksebeld.applicatie.excel.BeplantingsPlanToWord;
 import nl.boksebeld.applicatie.util.Icons;
+import nl.boksebeld.applicatie.util.KleurenConstant;
 import nl.boksebeld.applicatie.web.MasterPage;
 import nl.boksebeld.domein.plaats.BeplantingsPlan;
 import nl.boksebeld.domein.plaats.PlantPlaats;
+import nl.boksebeld.domein.plant.Kleur;
 import nl.boksebeld.domein.service.PlannenService;
 import nl.boksebeld.pages.planten.zoeken.PlantenSelectie;
 
@@ -54,10 +58,24 @@ public class DetailBeplantingsPlan extends MasterPage {
 				plantPlaatsItem.add(new Label("vierkantemeters", plantPlaats.getVierkanteMeters()));
 
 				if (null != plantPlaats.getPlant()) {
-					plantPlaatsItem
-							.add(new Label("plant.nederlandseNaam", plantPlaats.getPlant().getNederlandseNaam()));
+					plantPlaatsItem.add(new Label("plant.botanischeNaam", plantPlaats.getPlant().getBotanischeNaam()));
+					// plantPlaatsItem.add(new Label("plant.bloeitijd",
+					// plantPlaats.getPlant().getBloeitijd()));
+					plantPlaatsItem.add(new Label("plant.bladhoudend", plantPlaats.getPlant().getBladhoudend()));
+					plantPlaatsItem.add(new Label("plant.hoogte", plantPlaats.getPlant().getHoogte()));
+					Label kleurLabel = new Label("plant.kleur", plantPlaats.getPlant().getKleur());
+					updateKleurLabel(kleurLabel, plantPlaats.getPlant().getKleur());
+					plantPlaatsItem.add(kleurLabel);
+
 				} else {
-					plantPlaatsItem.add(new Label("plant.nederlandseNaam"));
+					plantPlaatsItem.add(new Label("plant.botanischeNaam"));
+					// plantPlaatsItem.add(new Label("plant.bloeitijd"));
+					plantPlaatsItem.add(new Label("plant.bladhoudend"));
+					plantPlaatsItem.add(new Label("plant.hoogte"));
+					Label kleurLabel = new Label("plant.kleur");
+					updateKleurLabel(kleurLabel, null);
+					plantPlaatsItem.add(kleurLabel);
+
 				}
 				plantPlaatsItem.add(getUpdatePlantPlaatsBehavior(plantPlaats));
 
@@ -68,6 +86,10 @@ public class DetailBeplantingsPlan extends MasterPage {
 				plantPlaatsItem.add(verwijderImage);
 
 				plantPlaatsItem.setOutputMarkupId(true);
+			}
+
+			private void updateKleurLabel(Label label, Kleur kleur) {
+				label.add(new AttributeModifier("class", KleurenConstant.getKleur(kleur)));
 			}
 
 		});
@@ -112,6 +134,31 @@ public class DetailBeplantingsPlan extends MasterPage {
 		};
 
 		add(dynamicDownloadlink);
+
+		IModel<File> fileModelWord = new AbstractReadOnlyModel<File>() {
+			private static final long serialVersionUID = -7869743404096248857L;
+
+			@Override
+			public File getObject() {
+				return BeplantingsPlanToWord.plantToWord(plan);
+			}
+		};
+
+		DownloadLink dynamicDownloadlinkWord = new DownloadLink("wordlink", fileModelWord) {
+
+			private static final long serialVersionUID = 6751445861368618721L;
+
+			@Override
+			public void onClick() {
+
+				File file = (File) getModelObject();
+				IResourceStream resourceStream = new FileResourceStream(new org.apache.wicket.util.file.File(file));
+
+				getRequestCycle().scheduleRequestHandlerAfterCurrent(
+						new ResourceStreamRequestHandler(resourceStream, file.getName()));
+			}
+		};
+		add(dynamicDownloadlinkWord);
 
 	}
 

@@ -11,6 +11,7 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.PageableListView;
 import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import nl.boksebeld.applicatie.util.Icons;
@@ -56,7 +57,10 @@ public class KlantenPagina extends MasterPage {
 
 					@Override
 					protected void onEvent(final AjaxRequestTarget target) {
-						setResponsePage(new BewerkKlant(klant));
+						PageParameters pageParameters = new PageParameters();
+						pageParameters.set("klantId", klant.getId());
+
+						setResponsePage(BewerkKlant.class, pageParameters);
 					}
 
 				});
@@ -77,7 +81,10 @@ public class KlantenPagina extends MasterPage {
 
 					@Override
 					protected void onEvent(final AjaxRequestTarget target) {
-						setResponsePage(new BewerkKlant(klant));
+						PageParameters pageParameters = new PageParameters();
+						pageParameters.set("klantId", klant.getId());
+
+						setResponsePage(BewerkKlant.class, pageParameters);
 					}
 
 				});
@@ -94,7 +101,7 @@ public class KlantenPagina extends MasterPage {
 					protected void onEvent(final AjaxRequestTarget target) {
 
 						klantService.deleteKlant(klant);
-						setResponsePage(new KlantenPagina());
+						setResponsePage(KlantenPagina.class);
 
 					}
 
@@ -111,7 +118,7 @@ public class KlantenPagina extends MasterPage {
 			@Override
 			public void onClick() {
 
-				setResponsePage(new MaakNieuweKlant());
+				setResponsePage(MaakNieuweKlant.class);
 			}
 		});
 

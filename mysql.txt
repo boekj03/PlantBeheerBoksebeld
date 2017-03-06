@@ -1,0 +1,36 @@
+root password   HteBmysql2017
+
+windows server name MySQL57
+
+
+om te starten
+C:\> "C:\Program Files\MySQL\MySQL Server 5.7\bin\mysqld"
+om te stoppen
+C:\> "C:\Program Files\MySQL\MySQL Server 5.7\bin\mysqladmin" -u root shutdown
+
+CREATE DATABASE plantbeheer;
+ALTER TABLE planten MODIFY IMAGE BLOB;
+
+
+downloaden van https://dev.mysql.com/downloads/installer/
+
+en dan installeren de database benaderen onder: 
+ <property name="connection.username">root</property>
+   <property name="connection.password">HteBmysql2017</property>
+
+ctr alt del services kun je zin of hij start.
+
+
+
+apache-tomcat-7.0.37
+ik heb
+https://archive.apache.org/dist/tomcat/tomcat-7/v7.0.37/bin/ 
+apache-tomcat-7.0.37-windows-x64
+
+Wijzigingen voor het bladhouden zijn.
+ALTER TABLE plantbeheer.planten MODIFY bladhoudend VARCHAR(255);
+UPDATE plantbeheer.planten SET bladhoudend = NULL;
+
+
+DROP TABLE plantbeheer.PlantPlaats;
+

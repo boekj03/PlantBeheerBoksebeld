@@ -2,7 +2,10 @@ package nl.boksebeld.domein.plant;
 
 public enum Bloeitijd {
 
-	MEI_APRIL("Mei_April"), NAJAAR("Najaar"), ZOMER("Zomer");
+	JANUARI("januari"), FEBRUARI("februari"), MAART("maart"), APRIL("april"), MEI("mei"), JUNI("juni"), JULI(
+			"juli"), AUGUSTUS(
+					"augustus"), SEPTEMBER("september"), OKTOBER("oktober"), NOVEMBER("november"), DECEMBER("december");
+
 	private String bloeitijd;
 
 	private Bloeitijd(String value) {

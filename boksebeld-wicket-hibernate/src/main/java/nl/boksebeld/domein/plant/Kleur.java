@@ -2,9 +2,8 @@ package nl.boksebeld.domein.plant;
 
 public enum Kleur {
 
-	WIT("Wit"), BLAUW("Blauw"), PAARS("Paars"), VIOLET("Violet"), 
-	ROOD("Rood"), GEEL("geel"), ORANJE("oranje"), ROZE(
-			"Roze");
+	WIT("wit"), BLAUW("blauw"), PAARS("paars"), VIOLET("violet"), ROOD("rood"), GEEL("geel"), ORANJE("oranje"), ROZE(
+			"roze");
 
 	private String kleur;
 

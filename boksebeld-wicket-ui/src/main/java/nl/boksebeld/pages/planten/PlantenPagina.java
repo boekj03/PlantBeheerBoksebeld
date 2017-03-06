@@ -49,8 +49,13 @@ public class PlantenPagina extends MasterPage {
 
 				final Plant plant = plantItem.getModelObject();
 
-				plantItem.add(new Label("nederlandseNaam", plant.getNederlandseNaam()));
-				plantItem.add(new Label("beschrijving", plant.getBeschrijving()));
+				plantItem.add(new Label("botanischeNaam", plant.getBotanischeNaam()));
+				Label bloeitijdLabel = new Label("bloeitijd", plant.getBloeitijdWeergave());
+				bloeitijdLabel.setEscapeModelStrings(false);
+				plantItem.add(bloeitijdLabel);
+				plantItem.add(new Label("bladhoudend", plant.getBladhoudend()));
+				plantItem.add(new Label("hoogte", plant.getHoogte()));
+
 				IResource imageResource = new DynamicImageResource() {
 					@Override
 					protected byte[] getImageData(IResource.Attributes attributes) {

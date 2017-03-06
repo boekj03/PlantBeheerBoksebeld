@@ -8,9 +8,9 @@
     <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 <!--     autoreconnect voor connectie probleem -->
-    <property name="connection.url">jdbc:mysql://mysql:3306/beheerdb?autoReconnect=true</property>
-    <property name="connection.username">boksw00</property>
-    <property name="connection.password">WB1970Hol3</property>
+    <property name="connection.url">jdbc:mysql://localhost:3306/plantbeheer?autoReconnect=true</property>
+    <property name="connection.username">root</property>
+    <property name="connection.password">HteBmysql2017</property>
      
   	<!--   Database connection settings, Connect to HSQL, IN Memory 
     <property name="dialect">org.hibernate.dialect.HSQLDialect</property>
@@ -29,6 +29,13 @@
     <!-- Enable Hibernate's automatic session context management -->
     <property name="current_session_context_class">thread</property>
  
+ 	<!--voor probleem met connectie  -->
+ 	<property name="hibernate.c3p0.min_size">5</property>
+  	<property name="hibernate.c3p0.max_size">20</property>
+  	<property name="hibernate.c3p0.timeout">300</property>
+  	<property name="hibernate.c3p0.max_statements">50</property>
+  	<property name="hibernate.c3p0.idle_test_period">3000</property>
+ 
 <!--     voor een probleem met com.mysql.jdbc.exceptions.jdbc4.CommunicationsException:  -->
 <!--     The last packet successfully received from the server was -->
 
@@ -39,5 +46,5 @@
     <mapping resource="nl/boksebeld/hibernate/model/Plant.hbm.xml"></mapping>
     <mapping resource="nl/boksebeld/hibernate/model/BeplantingsPlan.hbm.xml"></mapping>
     <mapping resource="nl/boksebeld/hibernate/model/PlantPlaats.hbm.xml"></mapping>
-  </session-factory>
+   </session-factory>
 </hibernate-configuration>

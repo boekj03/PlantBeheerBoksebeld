@@ -21,7 +21,7 @@
             <column name="BEPLANTINGSPLAN_ID" not-null="true"/>
         </many-to-one>
    
-   		<many-to-one name="plant" column="PLANT_ID" unique="true" 
+   		<many-to-one name="plant" column="PLANT_ID" unique="false" 
        class="nl.boksebeld.domein.plant.Plant" not-null="false"/>
 		   
     	

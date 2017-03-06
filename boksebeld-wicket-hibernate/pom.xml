@@ -15,6 +15,7 @@
     <hsql.version>2.3.2</hsql.version>
     <junit.version>3.8.1</junit.version>
     <wicket.version>6.14.0</wicket.version>
+	<mysql.version>5.1.40</mysql.version>
   </properties>
 
   <dependencies>
@@ -25,6 +26,10 @@
       <artifactId>hsqldb</artifactId>
     </dependency>
 
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+	</dependency>
     <!-- hibernate -->
     <dependency>
       <groupId>org.hibernate</groupId>
@@ -72,6 +77,12 @@
         <artifactId>hsqldb</artifactId>
         <version>${hsql.version}</version>
       </dependency>
+	  
+	  <dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>${mysql.version}</version>
+	</dependency>
 
       <!-- hinbernate -->
       <dependency>

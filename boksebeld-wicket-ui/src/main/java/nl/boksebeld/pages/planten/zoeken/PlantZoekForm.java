@@ -12,7 +12,7 @@ import nl.boksebeld.pages.planten.checkbox.HoogteCheckBoxChoice;
 import nl.boksebeld.pages.planten.checkbox.KleurCheckBoxChoice;
 import nl.boksebeld.pages.planten.checkbox.LichtbehoefteCheckBoxChoice;
 import nl.boksebeld.pages.planten.checkbox.PlantsoortCheckBoxChoice;
-import nl.boksebeld.pages.planten.radio.BladhoudendRadioChoice;
+import nl.boksebeld.pages.planten.radio.BladhoudendCheckChoice;
 
 /**
  * 
@@ -31,6 +31,7 @@ public class PlantZoekForm extends Form<PlantZoekItem> {
 
 		// naw gegevens
 		nederlandseNaamGegevens(plantZoekModel);
+		beschrijvingGegevens(plantZoekModel);
 		botanischeNaamGegevens(plantZoekModel);
 		hoogteGegevens(plantZoekModel);
 
@@ -45,7 +46,7 @@ public class PlantZoekForm extends Form<PlantZoekItem> {
 	}
 
 	private void bladhoudendGegevens(IModel<PlantZoekItem> plantZoekModel) {
-		BladhoudendRadioChoice bladhoudendRC = new BladhoudendRadioChoice("bladhoudend");
+		BladhoudendCheckChoice bladhoudendRC = new BladhoudendCheckChoice("bladhoudendLijst");
 		add(bladhoudendRC);
 	}
 
@@ -54,6 +55,13 @@ public class PlantZoekForm extends Form<PlantZoekItem> {
 
 		nederlandseNaam.add(StringValidator.maximumLength(30));
 		add(nederlandseNaam);
+	}
+
+	private void beschrijvingGegevens(IModel<PlantZoekItem> plantZoekModel) {
+		TextField<String> beschrijving = new TextField<String>("beschrijving");
+
+		beschrijving.add(StringValidator.maximumLength(30));
+		add(beschrijving);
 	}
 
 	private void botanischeNaamGegevens(IModel<PlantZoekItem> plantZoekModel) {

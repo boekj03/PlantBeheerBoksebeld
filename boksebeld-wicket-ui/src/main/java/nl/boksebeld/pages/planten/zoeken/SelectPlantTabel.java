@@ -44,7 +44,9 @@ public class SelectPlantTabel extends PageableListView<PlantContainer> {
 		plantContainerItem.add(new Label("planteen_nederlandseNaam", plantEen.getNederlandseNaam()));
 		plantContainerItem.add(new Label("planteen_beschrijving", plantEen.getBeschrijving()));
 		plantContainerItem.add(new Label("planteen_hoogte", plantEen.getHoogte()));
-		plantContainerItem.add(new Label("planteen_bloeitijd", plantEen.getBloeitijd()));
+		Label labelBloeitijd = new Label("planteen_bloeitijd", plantEen.getBloeitijdWeergave());
+		labelBloeitijd.setEscapeModelStrings(false);
+		plantContainerItem.add(labelBloeitijd);
 		plantContainerItem.add(new Label("planteen_grondsoort", plantEen.getGrondsoort()));
 
 		CheckBox checkBox = new CheckBox("planteen_selected", new PropertyModel<Boolean>(plantEen, "selected"));
@@ -75,7 +77,8 @@ public class SelectPlantTabel extends PageableListView<PlantContainer> {
 		Label labelnaam = new Label("planttwee_nederlandseNaam", plantTwee.getNederlandseNaam());
 		Label labelBeschrijving = new Label("planttwee_beschrijving", plantTwee.getBeschrijving());
 		Label hoogte = new Label("planttwee_hoogte", plantTwee.getHoogte());
-		Label bloeitijd = new Label("planttwee_bloeitijd", plantTwee.getBloeitijd());
+		Label bloeitijd = new Label("planttwee_bloeitijd", plantTwee.getBloeitijdWeergave());
+		bloeitijd.setEscapeModelStrings(false);
 		Label grondsoort = new Label("planttwee_grondsoort", plantTwee.getGrondsoort());
 
 		labelnaam.setVisible(visible);
@@ -122,7 +125,8 @@ public class SelectPlantTabel extends PageableListView<PlantContainer> {
 		Label labelnaam = new Label("plantdrie_nederlandseNaam", plantDrie.getNederlandseNaam());
 		Label labelBeschrijving = new Label("plantdrie_beschrijving", plantDrie.getBeschrijving());
 		Label hoogte = new Label("plantdrie_hoogte", plantDrie.getHoogte());
-		Label bloeitijd = new Label("plantdrie_bloeitijd", plantDrie.getBloeitijd());
+		Label bloeitijd = new Label("plantdrie_bloeitijd", plantDrie.getBloeitijdWeergave());
+		bloeitijd.setEscapeModelStrings(false);
 		Label grondsoort = new Label("plantdrie_grondsoort", plantDrie.getGrondsoort());
 
 		labelnaam.setVisible(visible);

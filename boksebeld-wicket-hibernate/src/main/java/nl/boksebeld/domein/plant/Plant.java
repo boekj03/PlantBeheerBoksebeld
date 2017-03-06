@@ -1,6 +1,10 @@
 package nl.boksebeld.domein.plant;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * 
@@ -23,15 +27,85 @@ public class Plant implements Serializable {
 	private String code;
 
 	private Hoogte hoogte;
-	private boolean bladhoudend;
+	private Bladhoudend bladhoudend;
 
-	private Bloeitijd bloeitijd;
+	private Set<Bloeitijd> bloeitijdLijst = new HashSet<Bloeitijd>();
+
 	private Grondsoort grondsoort;
 	private Kleur kleur;
 	private Plantsoort plantsoort;
 	private Lichtbehoefte lichtbehoefte;
 
 	private boolean selected;
+
+	public Plant() {
+	}
+
+	public Set<Bloeitijd> getBloeitijdLijst() {
+		return bloeitijdLijst;
+	}
+
+	public void setBloeitijdLijst(Set<Bloeitijd> bloeitijdLijst) {
+		this.bloeitijdLijst = bloeitijdLijst;
+	}
+
+	public void addBloeitijd(Bloeitijd bloeitijd) {
+		this.bloeitijdLijst.add(bloeitijd);
+	}
+
+	public String getBloeitijdWeergave() {
+		String retVal = "";
+		int i = 0;
+
+		List<Bloeitijd> gesorteerdeLijst = new ArrayList<Bloeitijd>();
+
+		if (bloeitijdLijst.contains(Bloeitijd.JANUARI)) {
+			gesorteerdeLijst.add(Bloeitijd.JANUARI);
+		}
+		if (bloeitijdLijst.contains(Bloeitijd.FEBRUARI)) {
+			gesorteerdeLijst.add(Bloeitijd.FEBRUARI);
+		}
+		if (bloeitijdLijst.contains(Bloeitijd.MAART)) {
+			gesorteerdeLijst.add(Bloeitijd.MAART);
+		}
+		if (bloeitijdLijst.contains(Bloeitijd.APRIL)) {
+			gesorteerdeLijst.add(Bloeitijd.APRIL);
+		}
+		if (bloeitijdLijst.contains(Bloeitijd.MEI)) {
+			gesorteerdeLijst.add(Bloeitijd.MEI);
+		}
+		if (bloeitijdLijst.contains(Bloeitijd.JUNI)) {
+			gesorteerdeLijst.add(Bloeitijd.JUNI);
+		}
+		if (bloeitijdLijst.contains(Bloeitijd.JULI)) {
+			gesorteerdeLijst.add(Bloeitijd.JULI);
+		}
+		if (bloeitijdLijst.contains(Bloeitijd.AUGUSTUS)) {
+			gesorteerdeLijst.add(Bloeitijd.AUGUSTUS);
+		}
+		if (bloeitijdLijst.contains(Bloeitijd.SEPTEMBER)) {
+			gesorteerdeLijst.add(Bloeitijd.SEPTEMBER);
+		}
+		if (bloeitijdLijst.contains(Bloeitijd.OKTOBER)) {
+			gesorteerdeLijst.add(Bloeitijd.OKTOBER);
+		}
+		if (bloeitijdLijst.contains(Bloeitijd.NOVEMBER)) {
+			gesorteerdeLijst.add(Bloeitijd.NOVEMBER);
+		}
+		if (bloeitijdLijst.contains(Bloeitijd.DECEMBER)) {
+			gesorteerdeLijst.add(Bloeitijd.DECEMBER);
+		}
+
+		for (Bloeitijd bloeitijd : gesorteerdeLijst) {
+			i++;
+			retVal = retVal + bloeitijd + "; ";
+			if (i % 3 == 0) {
+				retVal = retVal + "</br>";
+				i = 0;
+			}
+		}
+		return retVal;
+	}
 
 	public boolean isSelected() {
 		return selected;
@@ -57,10 +131,6 @@ public class Plant implements Serializable {
 
 	public void setImage(byte[] image) {
 		this.image = image;
-	}
-
-	public Plant() {
-		super();
 	}
 
 	public int getId() {
@@ -95,14 +165,6 @@ public class Plant implements Serializable {
 		this.beschrijving = beschrijving;
 	}
 
-	public Bloeitijd getBloeitijd() {
-		return bloeitijd;
-	}
-
-	public void setBloeitijd(Bloeitijd bloeitijd) {
-		this.bloeitijd = bloeitijd;
-	}
-
 	public Hoogte getHoogte() {
 		return hoogte;
 	}
@@ -111,11 +173,11 @@ public class Plant implements Serializable {
 		this.hoogte = hoogte;
 	}
 
-	public boolean isBladhoudend() {
+	public Bladhoudend getBladhoudend() {
 		return bladhoudend;
 	}
 
-	public void setBladhoudend(boolean bladhoudend) {
+	public void setBladhoudend(Bladhoudend bladhoudend) {
 		this.bladhoudend = bladhoudend;
 	}
 

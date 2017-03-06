@@ -17,12 +17,13 @@ import org.apache.wicket.validation.validator.StringValidator;
 
 import nl.boksebeld.applicatie.web.MasterPage;
 import nl.boksebeld.domein.plant.Plant;
+import nl.boksebeld.pages.planten.checkbox.BloeitijdCheckBoxChoice;
+import nl.boksebeld.pages.planten.dropdownchoice.BladhoudenDropDownChoice;
 import nl.boksebeld.pages.planten.dropdownchoice.GrondsoortDropDownChoice;
 import nl.boksebeld.pages.planten.dropdownchoice.HoogteDropDownChoice;
 import nl.boksebeld.pages.planten.dropdownchoice.KleurDropDownChoice;
 import nl.boksebeld.pages.planten.dropdownchoice.LichtbehoefteDropDownChoice;
 import nl.boksebeld.pages.planten.dropdownchoice.PlantsoortDropDownChoice;
-import nl.boksebeld.pages.planten.radio.BloeitijdRadioChoice;
 
 public abstract class AbstractPlantUpdater extends MasterPage {
 
@@ -68,11 +69,8 @@ public abstract class AbstractPlantUpdater extends MasterPage {
 			HoogteDropDownChoice hoogteDdc = new HoogteDropDownChoice("hoogte");
 			add(hoogteDdc);
 
-			// BloeitijdDropDownChoice bloeitijdDdc = new
-			// BloeitijdDropDownChoice("bloeitijd");
-			// add(bloeitijdDdc);
-			BloeitijdRadioChoice bloeitijdRdc = new BloeitijdRadioChoice("bloeitijd");
-			add(bloeitijdRdc);
+			BloeitijdCheckBoxChoice bloeitijdCb = new BloeitijdCheckBoxChoice("bloeitijdLijst");
+			add(bloeitijdCb);
 
 			GrondsoortDropDownChoice grondsoortDdc = new GrondsoortDropDownChoice("grondsoort");
 			add(grondsoortDdc);
@@ -82,6 +80,9 @@ public abstract class AbstractPlantUpdater extends MasterPage {
 			add(lichtbehoefteDdc);
 			PlantsoortDropDownChoice plantsoortDdc = new PlantsoortDropDownChoice("plantsoort");
 			add(plantsoortDdc);
+
+			BladhoudenDropDownChoice bladhoudendDdc = new BladhoudenDropDownChoice("bladhoudend");
+			add(bladhoudendDdc);
 
 			IResource imageResource = getPlantImage();
 			add(new Image("image", imageResource));

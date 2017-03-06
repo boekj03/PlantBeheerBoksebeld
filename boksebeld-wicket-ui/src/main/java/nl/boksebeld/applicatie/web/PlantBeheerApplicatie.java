@@ -24,7 +24,6 @@ import nl.boksebeld.pages.beplantingsplan.MaakNieuwBeplantingsPlan;
 import nl.boksebeld.pages.beplantingsplan.MaakNieuwPlantPlaats;
 import nl.boksebeld.pages.beplantingsplan.UpdatePlantPlaats;
 import nl.boksebeld.pages.klanten.BewerkKlant;
-import nl.boksebeld.pages.klanten.KlantenPagina;
 import nl.boksebeld.pages.klanten.MaakNieuweKlant;
 import nl.boksebeld.pages.planten.BewerkPlant;
 import nl.boksebeld.pages.planten.MaakNieuwePlant;
@@ -45,7 +44,7 @@ public class PlantBeheerApplicatie extends AuthenticatedWebApplication {
 		getComponentInstantiationListeners().add(new SpringComponentInjector(this));
 
 		super.init();
-		mountPage("/klanten", KlantenPagina.class);
+		// mountPage("/klanten", KlantenPagina.class);
 		mountPage("/planten", PlantenPagina.class);
 		mountPage("/createKlant", MaakNieuweKlant.class);
 		mountPage("/updateKlant", BewerkKlant.class);
@@ -96,6 +95,6 @@ public class PlantBeheerApplicatie extends AuthenticatedWebApplication {
 	@Override
 	public Class<? extends Page> getHomePage() {
 
-		return KlantenPagina.class;
+		return PlantenPagina.class;
 	}
 }

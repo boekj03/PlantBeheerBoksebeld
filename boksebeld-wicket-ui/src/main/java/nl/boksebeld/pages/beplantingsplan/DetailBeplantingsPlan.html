@@ -11,8 +11,12 @@
 			<tr>
 				<td bgcolor="lightgrey"><b>Plant plaats Naam</b></td>
 				<td bgcolor="lightgrey"><b>aantal m2</b></td>
-				<td bgcolor="lightgrey"><b>Ned naam plant</b></td>
-			
+				<td bgcolor="lightgrey"><b>bot naam</b></td>
+				<!--<td bgcolor="lightgrey"><b>bloeitijd</b></td> -->
+				<td bgcolor="lightgrey"><b>bladhoudend</b></td>
+				<td bgcolor="lightgrey"><b>hoogte</b></td>
+				<td bgcolor="lightgrey"><b>kleur</b></td>
+				
 				<td bgcolor="lightgrey"></td>
 				<td bgcolor="lightgrey"></td>
 			</tr>
@@ -21,7 +25,12 @@
 			<tr wicket:id="plantPlaatsLijst" class="mark">
 				<td><text wicket:id="naam" type="text" id="naam"/></td>
 				<td><text wicket:id="vierkantemeters" type="text" id="vierkantemeters"/></td> 
-				<td><text wicket:id="plant.nederlandseNaam" type="text" /></td>
+				<td><text wicket:id="plant.botanischeNaam" type="text" /></td>
+			<!--	<td><text wicket:id="plant.bloeitijd" type="text" /></td>  -->
+				<td><text wicket:id="plant.bladhoudend" type="text" /></td>
+				<td><text wicket:id="plant.hoogte" type="text" /></td>
+				<td><text wicket:id="plant.kleur" type="text" /></td>
+				
 				<td class="prullebak"><img wicket:id="updateimage"/></td>
 				<td class="prullebak"><img wicket:id="verwijderimage"/></td>	
 			</tr>
@@ -37,6 +46,7 @@
 				value="Nieuwe plaats" />
 			<input wicket:id="addplanten" type="submit" value="Select planten" />
 			<input wicket:id="excellink" type="submit" value="Excel" />
+			<input wicket:id="wordlink" type="submit" value="Word" />
 		
 			<br>
 

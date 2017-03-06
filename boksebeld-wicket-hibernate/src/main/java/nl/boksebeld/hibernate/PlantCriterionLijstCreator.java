@@ -3,9 +3,12 @@ package nl.boksebeld.hibernate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.sql.JoinType;
 
+import nl.boksebeld.domein.plant.Bladhoudend;
 import nl.boksebeld.domein.plant.Bloeitijd;
 import nl.boksebeld.domein.plant.Grondsoort;
 import nl.boksebeld.domein.plant.Hoogte;
@@ -28,17 +31,19 @@ public class PlantCriterionLijstCreator {
 	 * 
 	 * @return List<Criterion>.
 	 */
-	public List<Criterion> getPlantCriterionLijst(PlantZoekItem plantZoekItem) {
+	public List<Criterion> getPlantCriterionLijst(PlantZoekItem plantZoekItem, Criteria criteria) {
 		List<Criterion> criteriaLijst = new ArrayList<Criterion>();
 		voegCriterionToe(criteriaLijst, getBotanischeNaamCriterium(plantZoekItem));
 		voegCriterionToe(criteriaLijst, getCodeCriterium(plantZoekItem));
 		voegCriterionToe(criteriaLijst, getNederlandseNaamCriterium(plantZoekItem));
+		voegCriterionToe(criteriaLijst, getBeschrijvingCriterium(plantZoekItem));
 		voegCriterionToe(criteriaLijst, getHoogteCriterium(plantZoekItem));
-		voegCriterionToe(criteriaLijst, getBloeitijdCriterium(plantZoekItem));
+		voegCriterionToe(criteriaLijst, getBloeitijdCriterium(plantZoekItem, criteria));
 		voegCriterionToe(criteriaLijst, getGrondsoortCriterium(plantZoekItem));
 		voegCriterionToe(criteriaLijst, getKleurCriterium(plantZoekItem));
 		voegCriterionToe(criteriaLijst, getPlantsoortCriterium(plantZoekItem));
 		voegCriterionToe(criteriaLijst, getLichtbehoefteCriterium(plantZoekItem));
+		voegCriterionToe(criteriaLijst, getBladhoudendCriterium(plantZoekItem));
 		return criteriaLijst;
 	}
 
@@ -53,6 +58,15 @@ public class PlantCriterionLijstCreator {
 		if (plantZoekItem.getBotanischeNaam() != null) {
 			toeTeVoegenCriterium = Restrictions.like("botanischeNaam",
 					WILDCARD + plantZoekItem.getBotanischeNaam() + WILDCARD);
+		}
+		return toeTeVoegenCriterium;
+	}
+
+	public Criterion getBeschrijvingCriterium(PlantZoekItem plantZoekItem) {
+		Criterion toeTeVoegenCriterium = null;
+		if (plantZoekItem.getBeschrijving() != null) {
+			toeTeVoegenCriterium = Restrictions.like("beschrijving",
+					WILDCARD + plantZoekItem.getBeschrijving() + WILDCARD);
 		}
 		return toeTeVoegenCriterium;
 	}
@@ -91,20 +105,40 @@ public class PlantCriterionLijstCreator {
 		return toeTeVoegenCriterium;
 	}
 
-	private Criterion getBloeitijdCriterium(PlantZoekItem plantZoekItem) {
+	private Criterion getBladhoudendCriterium(PlantZoekItem plantZoekItem) {
+		Criterion toeTeVoegenCriterium = null;
+		int size = plantZoekItem.getBladhoudendLijst().size();
+		if (size == 0) {
+			return null;
+		}
+		Criterion[] toeTeVoegenLijst = new Criterion[size];
+		for (int i = 0; i < size; i++) {
+			Bladhoudend bladhoudend = plantZoekItem.getBladhoudendLijst().get(i);
+			toeTeVoegenLijst[i] = Restrictions.eq("bladhoudend", bladhoudend);
+
+		}
+		toeTeVoegenCriterium = Restrictions.or(toeTeVoegenLijst);
+		return toeTeVoegenCriterium;
+	}
+
+	private Criterion getBloeitijdCriterium(PlantZoekItem plantZoekItem, Criteria criteria) {
 
 		Criterion toeTeVoegenCriterium = null;
 		int size = plantZoekItem.getBloeitijdLijst().size();
 		if (size == 0) {
 			return null;
 		}
+		// dit werkt vraag niet aan hans waarom
+		Criteria createAlias = criteria.createAlias("bloeitijdLijst", "bloeitijdLijstAlias", JoinType.INNER_JOIN);
 		Criterion[] toeTeVoegenLijst = new Criterion[size];
+
 		for (int i = 0; i < size; i++) {
 			Bloeitijd bloeitijd = plantZoekItem.getBloeitijdLijst().get(i);
-			toeTeVoegenLijst[i] = Restrictions.eq("bloeitijd", bloeitijd);
+			toeTeVoegenLijst[i] = Restrictions.eq("bloeitijdLijstAlias.elements", bloeitijd);
 
 		}
 		toeTeVoegenCriterium = Restrictions.or(toeTeVoegenLijst);
+
 		return toeTeVoegenCriterium;
 	}
 

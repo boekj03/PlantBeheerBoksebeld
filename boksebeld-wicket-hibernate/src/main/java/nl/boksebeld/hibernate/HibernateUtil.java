@@ -259,9 +259,11 @@ public class HibernateUtil {
 	public static List<Plant> getPlantLijst(PlantZoekItem plantZoekItem) {
 		final Session session = HibernateUtil.getSessionFactory().openSession();
 		PlantCriterionLijstCreator criterionLijstCreator = new PlantCriterionLijstCreator();
-		List<Criterion> criteriaLijst = criterionLijstCreator.getPlantCriterionLijst(plantZoekItem);
 
 		Criteria criteria = session.createCriteria(Plant.class);
+
+		List<Criterion> criteriaLijst = criterionLijstCreator.getPlantCriterionLijst(plantZoekItem, criteria);
+
 		for (Criterion criterion : criteriaLijst) {
 			criteria.add(criterion);
 		}
