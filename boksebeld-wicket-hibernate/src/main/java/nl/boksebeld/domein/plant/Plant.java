@@ -53,7 +53,7 @@ public class Plant implements Serializable {
 		this.bloeitijdLijst.add(bloeitijd);
 	}
 
-	public String getBloeitijdWeergave() {
+	public String getBloeitijdWeergaveOrg() {
 		String retVal = "";
 		int i = 0;
 
@@ -103,6 +103,29 @@ public class Plant implements Serializable {
 				retVal = retVal + "</br>";
 				i = 0;
 			}
+		}
+		return retVal;
+	}
+
+	public String getBloeitijdWeergave() {
+		String retVal = "";
+
+		for (Bloeitijd bloeitijd : Bloeitijd.values()) {
+			retVal = retVal + stringWaardeBloeitijd(bloeitijd);
+		}
+
+		return retVal;
+	}
+
+	private String stringWaardeBloeitijd(Bloeitijd btijd) {
+		String retVal = "";
+
+		if (bloeitijdLijst.contains(btijd)) {
+			// retVal = btijd.getBloeitijdAsString().substring(0,
+			// 1).toUpperCase();
+			retVal = "\u2B1B";
+		} else {
+			retVal = "\u2B1C";
 		}
 		return retVal;
 	}
@@ -219,6 +242,15 @@ public class Plant implements Serializable {
 
 	public void setBotanischeNaam(String botanischeNaam) {
 		this.botanischeNaam = botanischeNaam;
+	}
+
+	public static void main(String[] args) {
+		Plant plant = new Plant();
+		plant.getBloeitijdLijst().add(Bloeitijd.JANUARI);
+		plant.getBloeitijdLijst().add(Bloeitijd.MAART);
+		plant.getBloeitijdLijst().add(Bloeitijd.JULI);
+		plant.getBloeitijdLijst().add(Bloeitijd.NOVEMBER);
+		System.out.println(plant.getBloeitijdWeergave());
 	}
 
 }

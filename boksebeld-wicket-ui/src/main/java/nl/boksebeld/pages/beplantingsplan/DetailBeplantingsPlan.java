@@ -63,6 +63,7 @@ public class DetailBeplantingsPlan extends MasterPage {
 					// plantPlaats.getPlant().getBloeitijd()));
 					plantPlaatsItem.add(new Label("plant.bladhoudend", plantPlaats.getPlant().getBladhoudend()));
 					plantPlaatsItem.add(new Label("plant.hoogte", plantPlaats.getPlant().getHoogte()));
+					plantPlaatsItem.add(new Label("plant.bloeitijd", plantPlaats.getPlant().getBloeitijdWeergave()));
 					Label kleurLabel = new Label("plant.kleur", plantPlaats.getPlant().getKleur());
 					updateKleurLabel(kleurLabel, plantPlaats.getPlant().getKleur());
 					plantPlaatsItem.add(kleurLabel);

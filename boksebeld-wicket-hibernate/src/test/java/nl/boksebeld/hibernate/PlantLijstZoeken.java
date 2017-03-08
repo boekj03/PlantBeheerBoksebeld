@@ -1,7 +1,7 @@
 package nl.boksebeld.hibernate;
 
 public class PlantLijstZoeken {
-	//
+
 	// @Test
 	//
 	// public void zoekPlantOpnaamTest() {
@@ -10,13 +10,16 @@ public class PlantLijstZoeken {
 	//
 	// PlantZoekItem pzi = new PlantZoekItem();
 	// // pzi.setNederlandseNaam("plant");
-	// // pzi.getBloeitijdLijst().add(Bloeitijd.JANUARI);
+	// pzi.getBloeitijdLijst().add(Bloeitijd.JANUARI);
+	// pzi.getBloeitijdLijst().add(Bloeitijd.FEBRUARI);
 	// List<Plant> plantLijst = HibernateUtil.getPlantLijst(pzi);
 	//
-	// List list = HibernateUtil.getList(Plant.class);
+	// // List list = HibernateUtil.getList(Plant.class);
 	// System.out.println(plantLijst.size());
-	// System.out.println(list.size());
-	//
+	// // System.out.println(list.size());
+	// for (Plant plant : plantLijst) {
+	// System.out.println(plant.getBloeitijdWeergave());
+	// }
 	// Assert.assertEquals(1, plantLijst.size());
 	// } catch (Exception ex) {
 	// ex.printStackTrace();
@@ -25,7 +28,7 @@ public class PlantLijstZoeken {
 	// // HibernateUtil.delete(plant);
 	// }
 	// }
-	//
+
 	// @Test
 	// @Ignore
 	// public void zoekPlantOpHoogteTest() {

@@ -130,10 +130,13 @@ public class PlantCriterionLijstCreator {
 		}
 		// dit werkt vraag niet aan hans waarom
 		Criteria createAlias = criteria.createAlias("bloeitijdLijst", "bloeitijdLijstAlias", JoinType.INNER_JOIN);
+
+		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		Criterion[] toeTeVoegenLijst = new Criterion[size];
 
 		for (int i = 0; i < size; i++) {
 			Bloeitijd bloeitijd = plantZoekItem.getBloeitijdLijst().get(i);
+
 			toeTeVoegenLijst[i] = Restrictions.eq("bloeitijdLijstAlias.elements", bloeitijd);
 
 		}
