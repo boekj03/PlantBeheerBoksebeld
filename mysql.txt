@@ -34,3 +34,6 @@ UPDATE plantbeheer.planten SET bladhoudend = NULL;
 
 DROP TABLE plantbeheer.PlantPlaats;
 
+// voor het meer opslag maken van de beschrijving colomn
+ALTER TABLE plantbeheer.planten MODIFY beschrijving VARCHAR(2000);
+

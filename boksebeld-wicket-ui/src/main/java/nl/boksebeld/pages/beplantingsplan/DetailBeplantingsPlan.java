@@ -115,7 +115,8 @@ public class DetailBeplantingsPlan extends MasterPage {
 
 			@Override
 			public File getObject() {
-				return BeplantingsPlanToExcel.plantToExcel(plan);
+				BeplantingsPlanToExcel beplantingsPlanToExcel = new BeplantingsPlanToExcel();
+				return beplantingsPlanToExcel.plantToExcel(plan);
 			}
 		};
 

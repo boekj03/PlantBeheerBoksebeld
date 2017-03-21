@@ -3,15 +3,21 @@ package nl.boksebeld.applicatie.excel;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.Set;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.ClientAnchor;
+import org.apache.poi.ss.usermodel.CreationHelper;
+import org.apache.poi.ss.usermodel.Drawing;
+import org.apache.poi.ss.usermodel.Picture;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFFont;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import nl.boksebeld.domein.plaats.BeplantingsPlan;
 import nl.boksebeld.domein.plaats.PlantPlaats;
@@ -24,101 +30,188 @@ import nl.boksebeld.domein.plant.Plant;
  */
 public class BeplantingsPlanToExcel {
 
-	private static final Integer NAAM_COLUMN = 0;
-	private static final Integer VIERKANTEMETERS_COLUMN = 1;
-	private static final Integer AANTAL_PER_M2 = 2;
-	private static final Integer AANTAL_COLUM = 3;
-	private static final Integer PRIJS_COLUM = 4;
-	private static final Integer BOTANISCHE_COLUMN = 5;
-	private static final Integer BESCHRIJVING_COLUMN = 6;
+	public static final Integer KOL_EEN = 0;
+	public static final Integer KOL_TWEE = 1;
+	public static final Integer KOL_DRIE = 2;
+	public static final Integer KOL_VIER = 3;
+	public static final Integer KOL_VIJF = 4;
 
-	/**
-	 * 
-	 * @param plan
-	 * @throws IOException
-	 */
-	public static File plantToExcel(BeplantingsPlan plan) {
+	private static final Integer PAGINA_LENGTH = 50;
 
-		Workbook workbook = new HSSFWorkbook();
-		CellStyle boldStyl = createBoldStyle(workbook);
-		File excelfile = new File(plan.getNaam() + System.currentTimeMillis() + ".xls");
-		Sheet sheet = workbook.createSheet(plan.getNaam());
+	private static final String NEDERLANDSE_NAAM = "Nederlands naam: ";
+	private static final String BLOEITIJD = "Bloeitijd: ";
+	private static final String KLEUR = "Kleur: ";
 
+	private static final Integer AANTAL_RIJEN_FOTO = 6;
+	private static final Integer AANTAL_RIJEN_BESCHRIJVING = 6;
+
+	private LogoRegelCreator logoRegelCreator = new LogoRegelCreator();
+
+	public File plantToExcel(BeplantingsPlan plan) {
+		Workbook wb = new XSSFWorkbook();
+		File excelfile = new File(plan.getNaam() + System.currentTimeMillis() + ".xlsx");
+		Sheet sheet = wb.createSheet(plan.getNaam());
 		try {
+			logoRegelCreator.createLogoRegel(sheet, "Dit is het plan van hans");
 			Set<PlantPlaats> plantPlaatsLijst = plan.getPlantPlaatsLijst();
-			int rijnummer = 0;
-			maakEersteRij(sheet, boldStyl);
-			for (Iterator iterator = plantPlaatsLijst.iterator(); iterator.hasNext();) {
-				rijnummer++;
-				PlantPlaats plantPlaats = (PlantPlaats) iterator.next();
-				Row row = sheet.createRow(rijnummer);
+			for (PlantPlaats plantPlaats : plantPlaatsLijst) {
+				voegPlantToeAanExcel(sheet, plantPlaats);
 
-				row.createCell(NAAM_COLUMN).setCellValue(plantPlaats.getNaam());
-				row.createCell(VIERKANTEMETERS_COLUMN).setCellValue(plantPlaats.getVierkanteMeters());
-
-				Plant plant = plantPlaats.getPlant();
-				if (null != plant) {
-					row.createCell(AANTAL_PER_M2).setCellValue(plant.getAantalPerMeter());
-					int aantal = berekenAantal(plantPlaats, plant);
-					row.createCell(AANTAL_COLUM).setCellValue(aantal);
-					row.createCell(BOTANISCHE_COLUMN).setCellValue(plant.getBotanischeNaam());
-					row.createCell(BESCHRIJVING_COLUMN).setCellValue(plant.getBeschrijving());
-				}
 			}
 
-			FileOutputStream output = new FileOutputStream(excelfile);
-			workbook.write(output);
-			output.close();
-
+			// Write the Excel file
+			FileOutputStream fileOut = null;
+			fileOut = new FileOutputStream(excelfile);
+			wb.write(fileOut);
+			fileOut.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return excelfile;
-
 	}
 
-	private static CellStyle createBoldStyle(Workbook workbook) {
-		CellStyle boldStyle = workbook.createCellStyle();
-		Font boldFont = workbook.createFont();
-		boldFont.setBoldweight(Font.BOLDWEIGHT_BOLD);
-		boldStyle.setFont(boldFont);
-		return boldStyle;
-	}
+	// voor test
 
-	private static void maakEersteRij(Sheet sheet, CellStyle boldStyl) {
-		Row eersteRij = sheet.createRow(0);
+	// public void maakexceltest(List<Plant> plantLijst) throws
+	// FileNotFoundException, IOException { dit was voor test
+	// Workbook wb = new XSSFWorkbook();
+	//
+	// Sheet sheet = wb.createSheet("My Sample Excel");
+	//
+	// logoRegelCreator.createLogoRegel(sheet, "Dit is het plan van hans");
+	// for (int i = 0; i < plantLijst.size(); i++) {
+	//
+	// voegPlantToeAanExcel(sheet, plantLijst.get(i));
+	// }
+	//
+	// // Write the Excel file
+	// FileOutputStream fileOut = null;
+	// fileOut = new FileOutputStream("myFile1" + System.currentTimeMillis() +
+	// ".xlsx");
+	// wb.write(fileOut);
+	// fileOut.close();
+	// }
 
-		eersteRij.createCell(NAAM_COLUMN).setCellValue("Naam van plaats");
-		eersteRij.createCell(VIERKANTEMETERS_COLUMN).setCellValue("M2  ");
-		eersteRij.createCell(AANTAL_PER_M2).setCellValue("Stuk per m2");
-		eersteRij.createCell(AANTAL_COLUM).setCellValue("Aantal");
-		eersteRij.createCell(PRIJS_COLUM).setCellValue("Prijs");
-		eersteRij.createCell(BOTANISCHE_COLUMN).setCellValue("Botanische naam   ");
-		eersteRij.createCell(BESCHRIJVING_COLUMN).setCellValue("Beschrijving                  ");
+	private void voegPlantToeAanExcel(Sheet sheet, PlantPlaats plantPlaats) throws IOException {
+		int onderhandenRij = bepaalStartRij(sheet);
 
-		// colomn breedte
-		sheet.autoSizeColumn(NAAM_COLUMN);
-		sheet.autoSizeColumn(VIERKANTEMETERS_COLUMN);
-		sheet.autoSizeColumn(AANTAL_PER_M2);
-		sheet.autoSizeColumn(AANTAL_COLUM);
-		sheet.autoSizeColumn(PRIJS_COLUM);
-		sheet.autoSizeColumn(BOTANISCHE_COLUMN);
-		sheet.autoSizeColumn(BESCHRIJVING_COLUMN);
-		// zet bold
-		eersteRij.setRowStyle(boldStyl);
+		Plant plant = plantPlaats.getPlant();
+		if (plant != null) {
 
-	}
-
-	private static Integer berekenAantal(PlantPlaats plantPlaats, Plant plant) {
-		Integer retVal;
-		try {
-			Double ceil = Math.ceil(plantPlaats.getVierkanteMeters() * plant.getAantalPerMeter());
-			retVal = ceil.intValue();
-		} catch (Exception e) {
-			return null;
+			voegFotoToe(sheet, onderhandenRij, plant);
+			voegcodeToe(sheet, onderhandenRij++, plantPlaats);
+			voegBotanischeNaamToe(sheet, onderhandenRij++, plant);
+			voegNederlandseNaamToe(sheet, onderhandenRij++, plant);
+			voegBloeitijdToe(sheet, onderhandenRij++, plant);
+			voegKleurToe(sheet, onderhandenRij++, plant);
+			voegBeschrijvingToe(sheet, plant);
 		}
-		return retVal;
+	}
+
+	private int bepaalStartRij(Sheet sheet) {
+		int lastRowNum = sheet.getLastRowNum();
+		int onderhandenRij = 0;
+
+		int startpositieOpPagina = lastRowNum % PAGINA_LENGTH;
+		int restRuimte = (PAGINA_LENGTH - startpositieOpPagina);
+
+		if (restRuimte < 17) {
+			onderhandenRij = lastRowNum + restRuimte + 1;
+		} else {
+			onderhandenRij = lastRowNum + 5;
+		}
+
+		return onderhandenRij;
+	}
+
+	private void voegBeschrijvingToe(Sheet sheet, Plant plant) {
+		int lastRowNum = sheet.getLastRowNum();
+		lastRowNum = lastRowNum + 1;
+		sheet.addMergedRegion(
+				new CellRangeAddress(lastRowNum, lastRowNum + AANTAL_RIJEN_BESCHRIJVING, KOL_EEN, KOL_VIER));
+		Row row = sheet.createRow(lastRowNum);
+		Cell cell = row.createCell(KOL_EEN);
+
+		XSSFCellStyle terugloopStyle = (XSSFCellStyle) sheet.getWorkbook().createCellStyle();
+		terugloopStyle.setWrapText(true);
+		terugloopStyle.setVerticalAlignment(VerticalAlignment.TOP);
+
+		cell.setCellValue(plant.getBeschrijving());
+		cell.setCellStyle(terugloopStyle);
+		sheet.createRow(lastRowNum + AANTAL_RIJEN_BESCHRIJVING);
+	}
+
+	private void voegKleurToe(Sheet sheet, int onderhandenRij, Plant plant) {
+		Row row = sheet.createRow(onderhandenRij);
+		Cell cell = row.createCell(KOL_EEN);
+		if (plant.getKleur() != null) {
+			cell.setCellValue(KLEUR + plant.getKleur().getKleur());
+		}
+
+	}
+
+	private void voegBloeitijdToe(Sheet sheet, int onderhandenRij, Plant plant) {
+		Row row = sheet.createRow(onderhandenRij);
+		Cell cell = row.createCell(KOL_EEN);
+		cell.setCellValue(BLOEITIJD + plant.getBloeitijdWeergaveOrg());
+
+	}
+
+	private void voegNederlandseNaamToe(Sheet sheet, int onderhandenRij, Plant plant) {
+		Row row = sheet.createRow(onderhandenRij);
+		Cell cell = row.createCell(KOL_EEN);
+		cell.setCellValue(NEDERLANDSE_NAAM + plant.getNederlandseNaam());
+
+	}
+
+	private void voegBotanischeNaamToe(Sheet sheet, int onderhandenRij, Plant plant) {
+		XSSFFont defaultFont = (XSSFFont) sheet.getWorkbook().createFont();
+		defaultFont.setBold(true);
+		XSSFCellStyle boldStyle = (XSSFCellStyle) sheet.getWorkbook().createCellStyle();
+		boldStyle.setFont(defaultFont);
+
+		Row row = sheet.createRow(onderhandenRij);
+		Cell cell = row.createCell(KOL_EEN);
+		cell.setCellStyle(boldStyle);
+		cell.setCellValue(plant.getBotanischeNaam());
+
+	}
+
+	private void voegcodeToe(Sheet sheet, int onderhandenRij, PlantPlaats plantPlaats) {
+		Row row = sheet.createRow(onderhandenRij);
+		Cell cell = row.createCell(KOL_EEN);
+		cell.setCellValue(plantPlaats.getNaam());
+	}
+
+	private void voegFotoToe(Sheet sheet, int onderhandenRij, Plant plant) {
+
+		byte[] bytes = plant.getImage();
+		if (null == bytes) {
+			return;
+		}
+
+		Workbook wb = sheet.getWorkbook();
+		int pictureIdx = wb.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
+
+		CreationHelper helper = wb.getCreationHelper();
+		Drawing drawing = sheet.createDrawingPatriarch();
+		ClientAnchor anchor = helper.createClientAnchor();
+
+		// create an anchor with upper left cell _and_ bottom right cell
+		anchor.setCol1(KOL_DRIE);
+		anchor.setRow1(onderhandenRij);
+		anchor.setCol2(KOL_VIJF);
+		anchor.setRow2(onderhandenRij + AANTAL_RIJEN_FOTO);
+
+		Picture pict = drawing.createPicture(anchor, pictureIdx);
+
+		for (int i = 0; i < AANTAL_RIJEN_FOTO; i++) {
+			// Create the Cell B3
+			Row row = sheet.createRow(onderhandenRij + i);
+			row.createCell(KOL_DRIE);
+			row.createCell(KOL_VIER);
+
+		}
 
 	}
 

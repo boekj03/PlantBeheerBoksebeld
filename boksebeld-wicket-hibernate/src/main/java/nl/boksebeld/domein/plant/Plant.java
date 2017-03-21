@@ -1,9 +1,7 @@
 package nl.boksebeld.domein.plant;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -55,55 +53,11 @@ public class Plant implements Serializable {
 
 	public String getBloeitijdWeergaveOrg() {
 		String retVal = "";
-		int i = 0;
 
-		List<Bloeitijd> gesorteerdeLijst = new ArrayList<Bloeitijd>();
-
-		if (bloeitijdLijst.contains(Bloeitijd.JANUARI)) {
-			gesorteerdeLijst.add(Bloeitijd.JANUARI);
-		}
-		if (bloeitijdLijst.contains(Bloeitijd.FEBRUARI)) {
-			gesorteerdeLijst.add(Bloeitijd.FEBRUARI);
-		}
-		if (bloeitijdLijst.contains(Bloeitijd.MAART)) {
-			gesorteerdeLijst.add(Bloeitijd.MAART);
-		}
-		if (bloeitijdLijst.contains(Bloeitijd.APRIL)) {
-			gesorteerdeLijst.add(Bloeitijd.APRIL);
-		}
-		if (bloeitijdLijst.contains(Bloeitijd.MEI)) {
-			gesorteerdeLijst.add(Bloeitijd.MEI);
-		}
-		if (bloeitijdLijst.contains(Bloeitijd.JUNI)) {
-			gesorteerdeLijst.add(Bloeitijd.JUNI);
-		}
-		if (bloeitijdLijst.contains(Bloeitijd.JULI)) {
-			gesorteerdeLijst.add(Bloeitijd.JULI);
-		}
-		if (bloeitijdLijst.contains(Bloeitijd.AUGUSTUS)) {
-			gesorteerdeLijst.add(Bloeitijd.AUGUSTUS);
-		}
-		if (bloeitijdLijst.contains(Bloeitijd.SEPTEMBER)) {
-			gesorteerdeLijst.add(Bloeitijd.SEPTEMBER);
-		}
-		if (bloeitijdLijst.contains(Bloeitijd.OKTOBER)) {
-			gesorteerdeLijst.add(Bloeitijd.OKTOBER);
-		}
-		if (bloeitijdLijst.contains(Bloeitijd.NOVEMBER)) {
-			gesorteerdeLijst.add(Bloeitijd.NOVEMBER);
-		}
-		if (bloeitijdLijst.contains(Bloeitijd.DECEMBER)) {
-			gesorteerdeLijst.add(Bloeitijd.DECEMBER);
+		for (Bloeitijd bloeitijd : Bloeitijd.values()) {
+			retVal = retVal + bloeitijd.getBloeitijd() + " ";
 		}
 
-		for (Bloeitijd bloeitijd : gesorteerdeLijst) {
-			i++;
-			retVal = retVal + bloeitijd + "; ";
-			if (i % 3 == 0) {
-				retVal = retVal + "</br>";
-				i = 0;
-			}
-		}
 		return retVal;
 	}
 

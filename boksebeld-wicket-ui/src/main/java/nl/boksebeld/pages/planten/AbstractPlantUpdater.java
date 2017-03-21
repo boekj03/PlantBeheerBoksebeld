@@ -63,7 +63,7 @@ public abstract class AbstractPlantUpdater extends MasterPage {
 
 			TextArea<String> beschrijving = new TextArea<String>("beschrijving");
 			beschrijving.setRequired(true);
-			beschrijving.add(StringValidator.maximumLength(300));
+			beschrijving.add(StringValidator.maximumLength(800));
 			add(beschrijving);
 
 			HoogteDropDownChoice hoogteDdc = new HoogteDropDownChoice("hoogte");

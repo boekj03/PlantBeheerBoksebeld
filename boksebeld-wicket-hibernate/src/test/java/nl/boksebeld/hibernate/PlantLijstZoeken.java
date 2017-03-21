@@ -3,7 +3,7 @@ package nl.boksebeld.hibernate;
 public class PlantLijstZoeken {
 
 	// @Test
-	//
+
 	// public void zoekPlantOpnaamTest() {
 	// try {
 	// // HibernateUtil.save(plant);
