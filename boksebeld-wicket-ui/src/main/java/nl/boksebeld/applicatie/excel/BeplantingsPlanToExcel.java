@@ -51,14 +51,10 @@ public class BeplantingsPlanToExcel {
 		Workbook wb = new XSSFWorkbook();
 		File excelfile = new File(plan.getNaam() + System.currentTimeMillis() + ".xlsx");
 		Sheet sheet = wb.createSheet(plan.getNaam());
+		Sheet sheet2 = wb.createSheet("Overzicht_" + plan.getNaam());
 		try {
-			logoRegelCreator.createLogoRegel(sheet, "Dit is het plan van hans");
-			Set<PlantPlaats> plantPlaatsLijst = plan.getPlantPlaatsLijst();
-			for (PlantPlaats plantPlaats : plantPlaatsLijst) {
-				voegPlantToeAanExcel(sheet, plantPlaats);
-
-			}
-
+			createSheet1(plan, sheet);
+			createSheet2(plan, sheet2);
 			// Write the Excel file
 			FileOutputStream fileOut = null;
 			fileOut = new FileOutputStream(excelfile);
@@ -70,27 +66,19 @@ public class BeplantingsPlanToExcel {
 		return excelfile;
 	}
 
-	// voor test
+	private void createSheet1(BeplantingsPlan plan, Sheet sheet) throws IOException {
+		logoRegelCreator.createLogoRegel(sheet, "Dit is het plan van hans");
+		Set<PlantPlaats> plantPlaatsLijst = plan.getPlantPlaatsLijst();
+		for (PlantPlaats plantPlaats : plantPlaatsLijst) {
+			voegPlantToeAanExcel(sheet, plantPlaats);
 
-	// public void maakexceltest(List<Plant> plantLijst) throws
-	// FileNotFoundException, IOException { dit was voor test
-	// Workbook wb = new XSSFWorkbook();
-	//
-	// Sheet sheet = wb.createSheet("My Sample Excel");
-	//
-	// logoRegelCreator.createLogoRegel(sheet, "Dit is het plan van hans");
-	// for (int i = 0; i < plantLijst.size(); i++) {
-	//
-	// voegPlantToeAanExcel(sheet, plantLijst.get(i));
-	// }
-	//
-	// // Write the Excel file
-	// FileOutputStream fileOut = null;
-	// fileOut = new FileOutputStream("myFile1" + System.currentTimeMillis() +
-	// ".xlsx");
-	// wb.write(fileOut);
-	// fileOut.close();
-	// }
+		}
+	}
+
+	private void createSheet2(BeplantingsPlan plan, Sheet sheet) throws IOException {
+		OverzichtExcel overzichtExcel = new OverzichtExcel();
+		overzichtExcel.createOverzichtSheet(plan, sheet);
+	}
 
 	private void voegPlantToeAanExcel(Sheet sheet, PlantPlaats plantPlaats) throws IOException {
 		int onderhandenRij = bepaalStartRij(sheet);

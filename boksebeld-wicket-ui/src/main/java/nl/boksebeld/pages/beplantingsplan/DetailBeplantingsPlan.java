@@ -18,6 +18,8 @@ import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.handler.resource.ResourceStreamRequestHandler;
+import org.apache.wicket.request.resource.DynamicImageResource;
+import org.apache.wicket.request.resource.IResource;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.util.resource.FileResourceStream;
 import org.apache.wicket.util.resource.IResourceStream;
@@ -55,7 +57,6 @@ public class DetailBeplantingsPlan extends MasterPage {
 				final PlantPlaats plantPlaats = plantPlaatsItem.getModelObject();
 
 				plantPlaatsItem.add(new Label("naam", plantPlaats.getNaam()));
-				plantPlaatsItem.add(new Label("vierkantemeters", plantPlaats.getVierkanteMeters()));
 
 				if (null != plantPlaats.getPlant()) {
 					plantPlaatsItem.add(new Label("plant.botanischeNaam", plantPlaats.getPlant().getBotanischeNaam()));
@@ -68,6 +69,15 @@ public class DetailBeplantingsPlan extends MasterPage {
 					updateKleurLabel(kleurLabel, plantPlaats.getPlant().getKleur());
 					plantPlaatsItem.add(kleurLabel);
 
+					IResource imageResource = new DynamicImageResource() {
+						@Override
+						protected byte[] getImageData(IResource.Attributes attributes) {
+							return plantPlaats.getPlant().getImage();
+						}
+					};
+
+					plantPlaatsItem.add(new Image("image", imageResource));
+
 				} else {
 					plantPlaatsItem.add(new Label("plant.botanischeNaam"));
 					// plantPlaatsItem.add(new Label("plant.bloeitijd"));
@@ -76,6 +86,9 @@ public class DetailBeplantingsPlan extends MasterPage {
 					Label kleurLabel = new Label("plant.kleur");
 					updateKleurLabel(kleurLabel, null);
 					plantPlaatsItem.add(kleurLabel);
+
+					IResource imageResource = null;
+					plantPlaatsItem.add(new Image("image", imageResource));
 
 				}
 				plantPlaatsItem.add(getUpdatePlantPlaatsBehavior(plantPlaats));

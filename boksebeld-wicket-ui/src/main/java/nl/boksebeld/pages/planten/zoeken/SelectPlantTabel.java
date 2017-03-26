@@ -42,7 +42,7 @@ public class SelectPlantTabel extends PageableListView<PlantContainer> {
 
 		final Plant plantEen = plantContainer.getPlantEen();
 		plantContainerItem.add(new Label("planteen_nederlandseNaam", plantEen.getNederlandseNaam()));
-		plantContainerItem.add(new Label("planteen_beschrijving", plantEen.getBeschrijving()));
+
 		plantContainerItem.add(new Label("planteen_hoogte", plantEen.getHoogte()));
 		Label labelBloeitijd = new Label("planteen_bloeitijd", plantEen.getBloeitijdWeergave());
 		labelBloeitijd.setEscapeModelStrings(false);
@@ -75,20 +75,20 @@ public class SelectPlantTabel extends PageableListView<PlantContainer> {
 
 	private void voegPlantTweeToe(ListItem<PlantContainer> plantContainerItem, final Plant plantTwee, boolean visible) {
 		Label labelnaam = new Label("planttwee_nederlandseNaam", plantTwee.getNederlandseNaam());
-		Label labelBeschrijving = new Label("planttwee_beschrijving", plantTwee.getBeschrijving());
+
 		Label hoogte = new Label("planttwee_hoogte", plantTwee.getHoogte());
 		Label bloeitijd = new Label("planttwee_bloeitijd", plantTwee.getBloeitijdWeergave());
 		bloeitijd.setEscapeModelStrings(false);
 		Label grondsoort = new Label("planttwee_grondsoort", plantTwee.getGrondsoort());
 
 		labelnaam.setVisible(visible);
-		labelBeschrijving.setVisible(visible);
+
 		hoogte.setVisible(visible);
 		bloeitijd.setVisible(visible);
 		grondsoort.setVisible(visible);
 
 		plantContainerItem.add(labelnaam);
-		plantContainerItem.add(labelBeschrijving);
+
 		plantContainerItem.add(hoogte);
 		plantContainerItem.add(bloeitijd);
 		plantContainerItem.add(grondsoort);
@@ -123,20 +123,20 @@ public class SelectPlantTabel extends PageableListView<PlantContainer> {
 
 	private void voegPlantDrieToe(ListItem<PlantContainer> plantContainerItem, final Plant plantDrie, boolean visible) {
 		Label labelnaam = new Label("plantdrie_nederlandseNaam", plantDrie.getNederlandseNaam());
-		Label labelBeschrijving = new Label("plantdrie_beschrijving", plantDrie.getBeschrijving());
+
 		Label hoogte = new Label("plantdrie_hoogte", plantDrie.getHoogte());
 		Label bloeitijd = new Label("plantdrie_bloeitijd", plantDrie.getBloeitijdWeergave());
 		bloeitijd.setEscapeModelStrings(false);
 		Label grondsoort = new Label("plantdrie_grondsoort", plantDrie.getGrondsoort());
 
 		labelnaam.setVisible(visible);
-		labelBeschrijving.setVisible(visible);
+
 		hoogte.setVisible(visible);
 		bloeitijd.setVisible(visible);
 		grondsoort.setVisible(visible);
 
 		plantContainerItem.add(labelnaam);
-		plantContainerItem.add(labelBeschrijving);
+
 		plantContainerItem.add(hoogte);
 		plantContainerItem.add(bloeitijd);
 		plantContainerItem.add(grondsoort);
@@ -146,7 +146,7 @@ public class SelectPlantTabel extends PageableListView<PlantContainer> {
 		plantContainerItem.add(checkBox);
 
 		plantContainerItem.add(labelnaam);
-		plantContainerItem.add(labelBeschrijving);
+
 		IResource imageResource = new DynamicImageResource() {
 			@Override
 			protected byte[] getImageData(IResource.Attributes attributes) {
