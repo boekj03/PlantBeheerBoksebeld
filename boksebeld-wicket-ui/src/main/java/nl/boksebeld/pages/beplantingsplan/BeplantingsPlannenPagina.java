@@ -51,8 +51,14 @@ public class BeplantingsPlannenPagina extends MasterPage {
 				Image updateImage = getUpdateImage(plan);
 				planItem.add(updateImage);
 
+				Image renameImage = getRenameImage(plan);
+				planItem.add(renameImage);
+
 				Image verwijderImage = getVerwijderImage(plan);
 				planItem.add(verwijderImage);
+
+				Image copyImage = getCopyImage(plan);
+				planItem.add(copyImage);
 
 				// bij doubleclick bewerk plan
 				planItem.add(new AjaxEventBehavior("ondblclick") {
@@ -63,6 +69,7 @@ public class BeplantingsPlannenPagina extends MasterPage {
 					}
 				});
 			}
+
 		});
 
 		listView.setOutputMarkupId(true);
@@ -91,6 +98,38 @@ public class BeplantingsPlannenPagina extends MasterPage {
 
 		});
 		return updateImage;
+	}
+
+	private Image getCopyImage(final BeplantingsPlan plan) {
+		Image copyImage = new Image("copyimage", Icons.COPY);
+		copyImage.add(new AjaxEventBehavior("onclick") {
+
+			private static final long serialVersionUID = -7405084475489414877L;
+
+			@Override
+			protected void onEvent(final AjaxRequestTarget target) {
+				BeplantingsPlan copy = plan.createCopy();
+				plannenService.saveBeplantingsPlan(copy);
+				setResponsePage(new BewerkBeplantingsplan(copy));
+			}
+
+		});
+		return copyImage;
+	}
+
+	private Image getRenameImage(final BeplantingsPlan plan) {
+		Image renameImage = new Image("renameimage", Icons.RENAME);
+		renameImage.add(new AjaxEventBehavior("onclick") {
+
+			private static final long serialVersionUID = -7405084475489414877L;
+
+			@Override
+			protected void onEvent(final AjaxRequestTarget target) {
+				setResponsePage(new BewerkBeplantingsplan(plan));
+			}
+
+		});
+		return renameImage;
 	}
 
 	private Image getVerwijderImage(final BeplantingsPlan plan) {

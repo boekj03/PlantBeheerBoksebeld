@@ -42,7 +42,7 @@ public class PlantenPagina extends MasterPage {
 		List<Plant> plantLijst = plantenService.getPlanten();
 		final PageableListView<Plant> listView;
 
-		add(listView = new PageableListView<Plant>("plantLijst", plantLijst, 20) {
+		add(listView = new PageableListView<Plant>("plantLijst", plantLijst, 50) {
 
 			@Override
 			protected void populateItem(ListItem<Plant> plantItem) {
@@ -89,7 +89,13 @@ public class PlantenPagina extends MasterPage {
 		add(new PagingNavigator("pageNavigator", listView));
 
 		// Create new Contact link
-		add(new Link("maakNieuwePlantLink") {
+		add(maakNiewePlantLink("maakNieuwePlantLink"));
+		add(maakNiewePlantLink("maakNieuwePlantLinkboven"));
+
+	}
+
+	private Link maakNiewePlantLink(String wickedId) {
+		return new Link(wickedId) {
 			private static final long serialVersionUID = -9006998536614010390L;
 
 			@Override
@@ -97,8 +103,7 @@ public class PlantenPagina extends MasterPage {
 
 				setResponsePage(new MaakNieuwePlant());
 			}
-		});
-
+		};
 	}
 
 	protected Image getVerwijderImage(final Plant plant) {

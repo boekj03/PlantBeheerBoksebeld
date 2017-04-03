@@ -1,7 +1,6 @@
 package nl.boksebeld.pages.beplantingsplan;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.wicket.AttributeModifier;
@@ -47,10 +46,10 @@ public class DetailBeplantingsPlan extends MasterPage {
 		// de plan naam.
 		add(new Label("plannaam", plan.getNaam()));
 
-		List<PlantPlaats> plantPlaatsLijst = new ArrayList<PlantPlaats>(plan.getPlantPlaatsLijst());
+		List<PlantPlaats> plantPlaatsLijst = plan.getSortedPlantPlaatsLijst();
 		final PageableListView<PlantPlaats> listView;
 
-		add(listView = new PageableListView<PlantPlaats>("plantPlaatsLijst", plantPlaatsLijst, 9) {
+		add(listView = new PageableListView<PlantPlaats>("plantPlaatsLijst", plantPlaatsLijst, 50) {
 
 			@Override
 			protected void populateItem(final ListItem<PlantPlaats> plantPlaatsItem) {
@@ -113,43 +112,26 @@ public class DetailBeplantingsPlan extends MasterPage {
 		add(new PagingNavigator("pageNavigator", listView));
 
 		// Create new Contact link
-		add(new Link("maakNieuwePlantPlaatsLink") {
-
-			@Override
-			public void onClick() {
-				setResponsePage(new MaakNieuwPlantPlaats(plan));
-			}
-
-		});
+		// add(new Link("maakNieuwePlantPlaatsLink") {
+		//
+		// @Override
+		// public void onClick() {
+		// setResponsePage(new MaakNieuwPlantPlaats(plan));
+		// }
+		//
+		// });
 		add(addPlantenLink("addplanten", plan));
+		add(addPlantenLink("addplantenboven", plan));
 
-		IModel<File> fileModel = new AbstractReadOnlyModel<File>() {
-			private static final long serialVersionUID = -7869743404096248857L;
+		add(createExcelLink("excellink", plan));
+		add(createExcelLink("excellinkboven", plan));
 
-			@Override
-			public File getObject() {
-				BeplantingsPlanToExcel beplantingsPlanToExcel = new BeplantingsPlanToExcel();
-				return beplantingsPlanToExcel.plantToExcel(plan);
-			}
-		};
+		// DownloadLink dynamicDownloadlinkWord = maakWordLink(plan);
+		// add(dynamicDownloadlinkWord);
 
-		DownloadLink dynamicDownloadlink = new DownloadLink("excellink", fileModel) {
+	}
 
-			private static final long serialVersionUID = 6751445861368618721L;
-
-			@Override
-			public void onClick() {
-
-				File file = (File) getModelObject();
-				IResourceStream resourceStream = new FileResourceStream(new org.apache.wicket.util.file.File(file));
-
-				getRequestCycle().scheduleRequestHandlerAfterCurrent(
-						new ResourceStreamRequestHandler(resourceStream, file.getName()));
-			}
-		};
-
-		add(dynamicDownloadlink);
-
+	private DownloadLink maakWordLink(final BeplantingsPlan plan) {
 		IModel<File> fileModelWord = new AbstractReadOnlyModel<File>() {
 			private static final long serialVersionUID = -7869743404096248857L;
 
@@ -173,8 +155,35 @@ public class DetailBeplantingsPlan extends MasterPage {
 						new ResourceStreamRequestHandler(resourceStream, file.getName()));
 			}
 		};
-		add(dynamicDownloadlinkWord);
+		return dynamicDownloadlinkWord;
+	}
 
+	private DownloadLink createExcelLink(final String wickedId, final BeplantingsPlan plan) {
+		IModel<File> fileModel = new AbstractReadOnlyModel<File>() {
+			private static final long serialVersionUID = -7869743404096248857L;
+
+			@Override
+			public File getObject() {
+				BeplantingsPlanToExcel beplantingsPlanToExcel = new BeplantingsPlanToExcel();
+				return beplantingsPlanToExcel.plantToExcel(plan);
+			}
+		};
+
+		DownloadLink dynamicDownloadlink = new DownloadLink(wickedId, fileModel) {
+
+			private static final long serialVersionUID = 6751445861368618721L;
+
+			@Override
+			public void onClick() {
+
+				File file = (File) getModelObject();
+				IResourceStream resourceStream = new FileResourceStream(new org.apache.wicket.util.file.File(file));
+
+				getRequestCycle().scheduleRequestHandlerAfterCurrent(
+						new ResourceStreamRequestHandler(resourceStream, file.getName()));
+			}
+		};
+		return dynamicDownloadlink;
 	}
 
 	public Link<Void> addPlantenLink(String name, final BeplantingsPlan plan) {

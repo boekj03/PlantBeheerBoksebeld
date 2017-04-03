@@ -1,0 +1,1 @@
+mysqldump -u root -p plantbeheer --password=HteBmysql2017 > "C:\ws\temp\backup.sql"

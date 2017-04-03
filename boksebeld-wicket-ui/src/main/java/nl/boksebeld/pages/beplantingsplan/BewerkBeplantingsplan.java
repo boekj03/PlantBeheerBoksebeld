@@ -5,17 +5,19 @@ import org.apache.wicket.model.CompoundPropertyModel;
 
 import nl.boksebeld.domein.plaats.BeplantingsPlan;
 
-public class MaakNieuwBeplantingsPlan extends AbstractBeplantingsplanUpdater {
-
-	private static final long serialVersionUID = -9152817517464363189L;
+/**
+ * 
+ * @author Hans te Boekhorst
+ *
+ */
+public class BewerkBeplantingsplan extends AbstractBeplantingsplanUpdater {
 
 	/**
-	 * Constructor that is invoked when page is invoked without a session.
-	 *
+	 * 
 	 */
-	public MaakNieuwBeplantingsPlan() {
+	private static final long serialVersionUID = -6268212889096647660L;
 
-		BeplantingsPlan plan = new BeplantingsPlan();
+	public BewerkBeplantingsplan(BeplantingsPlan plan) {
 		CompoundPropertyModel<BeplantingsPlan> beplantingsPlanModel = new CompoundPropertyModel<BeplantingsPlan>(plan);
 		setDefaultModel(beplantingsPlanModel);
 
@@ -24,14 +26,10 @@ public class MaakNieuwBeplantingsPlan extends AbstractBeplantingsplanUpdater {
 
 		// Add a create Contact form to the page
 		add(new MaakBeplantingsPlanForm("maakBeplantingsPlanForm", beplantingsPlanModel));
-
 	}
 
 	@Override
 	public void werkBeplantingsplanBij(BeplantingsPlan beplantingsPlan) {
-
-		plannenService.saveBeplantingsPlan(beplantingsPlan);
-
+		plannenService.updateBeplantingsPlan(beplantingsPlan);
 	}
-
 }

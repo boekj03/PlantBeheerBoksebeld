@@ -20,4 +20,10 @@ public final class Icons {
 
 	public static final ContextRelativeResource UPDATE = new ContextRelativeResource("mmi/rijk/icons/icon_edit.gif");
 
+	public static final ContextRelativeResource COPY = new ContextRelativeResource(
+			"mmi/rijk/icons/icon-copy-small.jpg");
+
+	public static final ContextRelativeResource RENAME = new ContextRelativeResource(
+			"mmi/rijk/icons/rename-icon-small.jpg");
+
 }

@@ -38,4 +38,11 @@ DROP TABLE plantbeheer.PlantPlaats;
 ALTER TABLE plantbeheer.planten MODIFY beschrijving VARCHAR(2000);
 
 backup maken
-mysqldump plantbeheer > plantbeheer_backup.sql;
+path C:\Program Files\MySQL\MySQL Server 5.7\bin toevoegen aan het variable
+mysqldump -uroot -p plantbeheer > "C:\ws\temp\backup.sql"
+password is dan HteBmysql2017
+
+terug zetten:
+mysqldump -uroot -p plantbeheer < "C:\ws\temp\backup.sql"
+
+Hiervoor heb ik een bat file :DatabaseDumpTS.bat gemaakt.

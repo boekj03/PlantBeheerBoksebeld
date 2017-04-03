@@ -2,6 +2,7 @@ package nl.excel;
 
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import nl.boksebeld.applicatie.excel.BeplantingsPlanToExcel;
@@ -9,8 +10,8 @@ import nl.boksebeld.domein.plaats.BeplantingsPlan;
 import nl.boksebeld.hibernate.HibernateUtil;
 
 public class NaarExcelTest {
+	@Ignore
 	@Test
-
 	public void naarExcelTest() {
 		try {
 			// HibernateUtil.save(plant);

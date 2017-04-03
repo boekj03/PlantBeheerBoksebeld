@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import nl.boksebeld.domein.plant.Plant;
 
-public class PlantPlaats implements Serializable {
+public class PlantPlaats implements Serializable, Comparable<PlantPlaats> {
 
 	/**
 	 * 
@@ -58,4 +58,26 @@ public class PlantPlaats implements Serializable {
 	public void setBeplantingsPlan(BeplantingsPlan beplantingsPlan) {
 		this.beplantingsPlan = beplantingsPlan;
 	}
+
+	public int compareTo(PlantPlaats other) {
+
+		if (this.getNaam() == null || other.getNaam() == null) {
+			return 0;
+		}
+		return this.getNaam().compareTo(other.getNaam());
+	}
+
+	/**
+	 * Hier maak ik een copy
+	 * 
+	 * @return
+	 */
+	public PlantPlaats createCopy() {
+		PlantPlaats copy = new PlantPlaats();
+		copy.setNaam(this.getNaam());
+		copy.setVierkanteMeters(this.getVierkanteMeters());
+		copy.setPlant(this.getPlant());
+		return copy;
+	}
+
 }

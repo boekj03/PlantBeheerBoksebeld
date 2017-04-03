@@ -1,7 +1,10 @@
 package nl.boksebeld.domein.plaats;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class BeplantingsPlan implements Serializable {
@@ -22,6 +25,12 @@ public class BeplantingsPlan implements Serializable {
 
 	public Set<PlantPlaats> getPlantPlaatsLijst() {
 		return plantPlaatsLijst;
+	}
+
+	public List<PlantPlaats> getSortedPlantPlaatsLijst() {
+		List<PlantPlaats> plantPlaatsLijstSorted = new ArrayList<PlantPlaats>(this.getPlantPlaatsLijst());
+		Collections.sort(plantPlaatsLijstSorted);
+		return plantPlaatsLijstSorted;
 	}
 
 	public void setPlantPlaatsLijst(Set<PlantPlaats> plantPlaatsLijst) {
@@ -47,6 +56,21 @@ public class BeplantingsPlan implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	/**
+	 * Hier maak ik een copy.
+	 * 
+	 * @return
+	 */
+	public BeplantingsPlan createCopy() {
+		BeplantingsPlan copy = new BeplantingsPlan();
+		copy.setNaam("kopie" + this.getNaam());
+		for (PlantPlaats plantPlaats : this.getPlantPlaatsLijst()) {
+			PlantPlaats plantPlaatCopy = plantPlaats.createCopy();
+			copy.addPlantPlaats(plantPlaatCopy);
+		}
+		return copy;
 	}
 
 }

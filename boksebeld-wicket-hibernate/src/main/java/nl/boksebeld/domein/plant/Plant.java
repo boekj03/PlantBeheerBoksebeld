@@ -55,7 +55,10 @@ public class Plant implements Serializable {
 		String retVal = "";
 
 		for (Bloeitijd bloeitijd : Bloeitijd.values()) {
-			retVal = retVal + bloeitijd.getBloeitijd() + " ";
+			if (bloeitijdLijst.contains(bloeitijd)) {
+
+				retVal = retVal + bloeitijd.getBloeitijd() + " ";
+			}
 		}
 
 		return retVal;

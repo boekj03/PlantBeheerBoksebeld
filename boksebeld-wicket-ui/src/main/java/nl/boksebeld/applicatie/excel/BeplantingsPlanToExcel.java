@@ -3,7 +3,6 @@ package nl.boksebeld.applicatie.excel;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Set;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.ClientAnchor;
@@ -68,8 +67,7 @@ public class BeplantingsPlanToExcel {
 
 	private void createSheet1(BeplantingsPlan plan, Sheet sheet) throws IOException {
 		logoRegelCreator.createLogoRegel(sheet, "Dit is het plan van hans");
-		Set<PlantPlaats> plantPlaatsLijst = plan.getPlantPlaatsLijst();
-		for (PlantPlaats plantPlaats : plantPlaatsLijst) {
+		for (PlantPlaats plantPlaats : plan.getSortedPlantPlaatsLijst()) {
 			voegPlantToeAanExcel(sheet, plantPlaats);
 
 		}

@@ -1,0 +1,21 @@
+	<wicket:extend>
+		<wicket:child />
+		<font color="red"><span wicket:id="feedback" /></font>
+		<p>
+		<form wicket:id="maakBeplantingsPlanForm">
+			<fieldset>
+			
+				<table cellpadding="3">
+					<tr>
+						<td align="right">Naam:*</td>
+						<td><input wicket:id="naam" type="text" /></td>
+					</tr>
+						
+				</table>
+			</fieldset>
+
+			<br> 
+			<input type="submit" name="Submit" value="Submit" /> 
+			<input wicket:id="backLink" type="submit" value="Cancel" />
+		</form>
+	</wicket:extend>
