@@ -18,6 +18,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 
 import nl.boksebeld.domein.plaats.BeplantingsPlan;
@@ -36,45 +37,66 @@ public class OverzichtExcel {
 	private static Integer KOLM2 = 3;
 	private static Integer KOLSTUKM2 = 4;
 	private static Integer KOLAANTAL = 5;
-	private static Integer KOLPRIJS = 6;
-	private static Integer KOLTOTAAL = 7;
-	private static Integer KOLBESCHRIJVING = 8;
-	private static Integer KOLFOTO = 9;
+	private static Integer KOLINKOOPPRIJS = 6;
+	private static Integer KOLMARGE = 7;
+	private static Integer KOLVERKOOPPRIJS = 8;
+	private static Integer KOLTOTAAL = 9;
 
-	private static Integer ROW1 = 1;
+	private static Integer KOLLEVERANCIER = 10;
+	private static Integer KOLMAAT = 11;
+
+	private static Integer KOLBESCHRIJVING = 12;
+	private static Integer KOLFOTO = 13;
+
+	private static Integer ROW1 = 0;
 
 	static {
-		KOLOMBREEDTELIJST.put(KOLNAAM, Integer.valueOf(20 * 256));
-		KOLOMBREEDTELIJST.put(KOLBOTANISCHE_NAAM, Integer.valueOf(20 * 256));
-		KOLOMBREEDTELIJST.put(BLOEITIJD_NAAM, Integer.valueOf(15 * 256));
-		KOLOMBREEDTELIJST.put(KOLM2, Integer.valueOf(10 * 256));
-		KOLOMBREEDTELIJST.put(KOLSTUKM2, Integer.valueOf(10 * 256));
-		KOLOMBREEDTELIJST.put(KOLAANTAL, Integer.valueOf(10 * 256));
-		KOLOMBREEDTELIJST.put(KOLPRIJS, Integer.valueOf(10 * 256));
-		KOLOMBREEDTELIJST.put(KOLTOTAAL, Integer.valueOf(10 * 256));
-		KOLOMBREEDTELIJST.put(KOLBESCHRIJVING, Integer.valueOf(60 * 256));
-		KOLOMBREEDTELIJST.put(KOLFOTO, Integer.valueOf(22 * 251));
+		KOLOMBREEDTELIJST.put(KOLNAAM, Integer.valueOf(1600));
+		KOLOMBREEDTELIJST.put(KOLBOTANISCHE_NAAM, Integer.valueOf(5760));
+		KOLOMBREEDTELIJST.put(BLOEITIJD_NAAM, Integer.valueOf(3160));
+		KOLOMBREEDTELIJST.put(KOLM2, Integer.valueOf(1600));
+		KOLOMBREEDTELIJST.put(KOLSTUKM2, Integer.valueOf(3200));
+		KOLOMBREEDTELIJST.put(KOLAANTAL, Integer.valueOf(1600));
+		KOLOMBREEDTELIJST.put(KOLINKOOPPRIJS, Integer.valueOf(1600));
+		KOLOMBREEDTELIJST.put(KOLMARGE, Integer.valueOf(1600));
+		KOLOMBREEDTELIJST.put(KOLVERKOOPPRIJS, Integer.valueOf(1600));
+		KOLOMBREEDTELIJST.put(KOLTOTAAL, Integer.valueOf(3200));
 
-		KOPTEKSTEN_LIJST.put(KOLNAAM, "Naam van plaats");
+		KOLOMBREEDTELIJST.put(KOLLEVERANCIER, Integer.valueOf(5760));
+		KOLOMBREEDTELIJST.put(KOLMAAT, Integer.valueOf(5760));
+
+		KOLOMBREEDTELIJST.put(KOLBESCHRIJVING, Integer.valueOf(23040));
+		KOLOMBREEDTELIJST.put(KOLFOTO, Integer.valueOf(5522)); // 5522 20.86
+																// =
+																// 2.64717162
+
+		KOPTEKSTEN_LIJST.put(KOLNAAM, "Plaats");
 		KOPTEKSTEN_LIJST.put(KOLBOTANISCHE_NAAM, "Botanische naam");
 		KOPTEKSTEN_LIJST.put(BLOEITIJD_NAAM, "Bloeitijd");
 		KOPTEKSTEN_LIJST.put(KOLM2, "M2");
 		KOPTEKSTEN_LIJST.put(KOLSTUKM2, "Stuk per m2");
 		KOPTEKSTEN_LIJST.put(KOLAANTAL, "Aantal");
-		KOPTEKSTEN_LIJST.put(KOLPRIJS, "Prijs");
+		KOPTEKSTEN_LIJST.put(KOLINKOOPPRIJS, "Prijs 1");
+		KOPTEKSTEN_LIJST.put(KOLMARGE, "Marge");
+		KOPTEKSTEN_LIJST.put(KOLVERKOOPPRIJS, "Prijs 2");
 		KOPTEKSTEN_LIJST.put(KOLTOTAAL, "totaal");
+
+		KOPTEKSTEN_LIJST.put(KOLLEVERANCIER, "leverancier");
+		KOPTEKSTEN_LIJST.put(KOLMAAT, "maat");
+
 		KOPTEKSTEN_LIJST.put(KOLBESCHRIJVING, "Beschrijving");
 		KOPTEKSTEN_LIJST.put(KOLFOTO, "Foto");
 
 		KOLOM_LETTERS.put(KOLM2, "D");
 		KOLOM_LETTERS.put(KOLSTUKM2, "E");
 		KOLOM_LETTERS.put(KOLAANTAL, "F");
-		KOLOM_LETTERS.put(KOLPRIJS, "G");
-
+		KOLOM_LETTERS.put(KOLINKOOPPRIJS, "G");
+		KOLOM_LETTERS.put(KOLMARGE, "H");
+		KOLOM_LETTERS.put(KOLVERKOOPPRIJS, "I");
 	}
 
 	public void createOverzichtSheet(BeplantingsPlan plan, Sheet sheet) {
-		sheet.createFreezePane(0, 2);// bovenste rij blokeren
+		sheet.createFreezePane(0, 1);// bovenste rij blokeren
 
 		// afdruk bereik
 
@@ -113,7 +135,13 @@ public class OverzichtExcel {
 		createM2(plantPlaats, row);
 		createStukM2(row);
 		createKolAantal(row);
-		createPrijs(row);
+		createInkoopPrijs(row, plant);
+		createMarge(row);
+		createVerkoopPrijs(row);
+
+		createLeverancier(row, plant);
+		createMaat(row, plant);
+
 		createKolTotaal(row);
 
 		Cell beschrijvingCell = row.createCell(KOLBESCHRIJVING);
@@ -124,6 +152,48 @@ public class OverzichtExcel {
 		beschrijvingCell.setCellValue(plant.getBeschrijving());
 
 		voegFotoToe(sheet, row, plant);
+	}
+
+	private void createMaat(Row row, Plant plant) {
+		XSSFCellStyle bovenuitlijnenStyle = bovenuitlijnen(row);
+		Cell cell = row.createCell(KOLMAAT);
+		cell.setCellStyle(bovenuitlijnenStyle);
+		cell.setCellValue(plant.getHandelsmaat());
+	}
+
+	private void createLeverancier(Row row, Plant plant) {
+		XSSFCellStyle bovenuitlijnenStyle = bovenuitlijnen(row);
+		Cell cell = row.createCell(KOLLEVERANCIER);
+		cell.setCellStyle(bovenuitlijnenStyle);
+		cell.setCellValue(plant.getLeverancier());
+
+	}
+
+	private void createVerkoopPrijs(Row row) {
+
+		String formule = "SUM(X_Y," + "PRODUCT(X_Y,Z_Y))";
+
+		formule = formule.replaceAll("Y", String.valueOf((row.getRowNum() + 1)));
+		formule = formule.replaceAll("X", KOLOM_LETTERS.get(KOLINKOOPPRIJS));
+		formule = formule.replaceAll("Z", KOLOM_LETTERS.get(KOLMARGE));
+		formule = formule.replaceAll("_", "");
+		XSSFCellStyle bovenuitlijnenStyle = bovenuitlijnen(row);
+		Cell cell = row.createCell(KOLVERKOOPPRIJS);
+		cell.setCellStyle(bovenuitlijnenStyle);
+
+		cell.setCellFormula(formule);
+
+	}
+
+	private void createMarge(Row row) {
+		XSSFCellStyle bovenuitlijnenStyle = bovenuitlijnen(row);
+		Cell cell = row.createCell(KOLMARGE);
+		cell.setCellStyle(bovenuitlijnenStyle);
+		// marge
+		cell.setCellValue(0);
+		DataFormat df = row.getSheet().getWorkbook().createDataFormat();
+		bovenuitlijnenStyle.setDataFormat(df.getFormat("###.##%"));
+
 	}
 
 	private void createBloeitijd(Row row, Plant plant) {
@@ -151,16 +221,33 @@ public class OverzichtExcel {
 
 		Cell cell = row.createCell(KOLTOTAAL);
 		cell.setCellStyle(bovenuitlijnenStyle);
-		cell.setCellFormula("PRODUCT(" + KOLOM_LETTERS.get(KOLAANTAL) + (row.getRowNum() + 1) + ":"
-				+ KOLOM_LETTERS.get(KOLPRIJS) + (row.getRowNum() + 1) + ")");
+
+		String formule = "PRODUCT(X_Y,Z_Y)";
+		formule = formule.replaceAll("Y", String.valueOf((row.getRowNum() + 1)));
+		formule = formule.replaceAll("_", "");
+		formule = formule.replaceAll("X", KOLOM_LETTERS.get(KOLAANTAL));
+		formule = formule.replaceAll("Z", KOLOM_LETTERS.get(KOLVERKOOPPRIJS));
+
+		cell.setCellFormula(formule);
 	}
 
 	private void createKolAantal(Row row) {
 		XSSFCellStyle bovenuitlijnenStyle = bovenuitlijnen(row);
 		Cell cell = row.createCell(KOLAANTAL);
 		cell.setCellStyle(bovenuitlijnenStyle);
-		cell.setCellFormula("PRODUCT(" + KOLOM_LETTERS.get(KOLM2) + (row.getRowNum() + 1) + ":"
-				+ KOLOM_LETTERS.get(KOLSTUKM2) + (row.getRowNum() + 1) + ")");
+
+		String formule = "PRODUCT(X_Y,Z_Y)";
+
+		formule = formule.replaceAll("Y", String.valueOf((row.getRowNum() + 1)));
+		formule = formule.replaceAll("_", "");
+		formule = formule.replaceAll("X", KOLOM_LETTERS.get(KOLM2));
+		formule = formule.replaceAll("Z", KOLOM_LETTERS.get(KOLSTUKM2));
+		cell.setCellFormula(formule);
+
+	}
+
+	public static void main(String[] args) {
+
 	}
 
 	private void createM2(PlantPlaats plantPlaats, Row row) {
@@ -177,11 +264,13 @@ public class OverzichtExcel {
 
 	}
 
-	private void createPrijs(Row row) {
+	private void createInkoopPrijs(Row row, Plant plant) {
 		XSSFCellStyle bovenuitlijnenStyle = bovenuitlijnen(row);
-		Cell cell = row.createCell(KOLPRIJS);
+		Cell cell = row.createCell(KOLINKOOPPRIJS);
 		cell.setCellStyle(bovenuitlijnenStyle);
-
+		if (null != plant.getInkoopprijs()) {
+			cell.setCellValue(plant.getInkoopprijs());
+		}
 	}
 
 	private void createBotanischeNaam(Row row, Plant plant) {
@@ -236,7 +325,7 @@ public class OverzichtExcel {
 		XSSFCellStyle boldStyle = (XSSFCellStyle) sheet.getWorkbook().createCellStyle();
 		boldStyle.setFont(defaultFont);
 
-		boldStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+		boldStyle.setFillForegroundColor(new XSSFColor(new java.awt.Color(231, 230, 230)));
 		boldStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
 
 		defaultFont.setColor(IndexedColors.ORANGE.getIndex());

@@ -71,6 +71,20 @@ public abstract class AbstractPlantUpdater extends MasterPage {
 
 			BloeitijdCheckBoxChoice bloeitijdCb = new BloeitijdCheckBoxChoice("bloeitijdLijst");
 			add(bloeitijdCb);
+			// hier nieuwe velden
+			TextField<String> leverancier = new TextField<String>("leverancier");
+			leverancier.setRequired(false);
+			leverancier.add(StringValidator.maximumLength(30));
+			add(leverancier);
+
+			TextField<String> handelsmaat = new TextField<String>("handelsmaat");
+			handelsmaat.setRequired(false);
+			handelsmaat.add(StringValidator.maximumLength(30));
+			add(handelsmaat);
+
+			TextField<Double> inkoopprijs = new TextField<Double>("inkoopprijs");
+			inkoopprijs.setRequired(false);
+			add(inkoopprijs);
 
 			GrondsoortDropDownChoice grondsoortDdc = new GrondsoortDropDownChoice("grondsoort");
 			add(grondsoortDdc);

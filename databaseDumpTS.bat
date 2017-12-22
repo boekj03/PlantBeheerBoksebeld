@@ -10,4 +10,4 @@ SET backupPath="C:\ws\temp\"
 @echo Month = %Month%
 @echo Year = %Year%  
   
-mysqldump -u root -p plantbeheer --password=HteBmysql2017 > "%backupPath%BACKUP%Day%-%Month%.sql"
+mysql -u root -p plantbeheer --password=HteBmysql2017 > "%backupPath%BACKUP%Day%-%Month%.sql"

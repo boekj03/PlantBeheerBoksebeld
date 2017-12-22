@@ -1,7 +1,11 @@
 	<wicket:extend>
-	<div id="bd">
-	
+		<div id="bd">
 		<h3>Catalogus</h3>
+					<form wicket:id="plantZoekForm">
+						Bot naam:
+						<input wicket:id="botanischeNaam" type="text" />
+						<input type="submit" value="Zoek">
+					</form> 
 		<font color="red"><span wicket:id="feedback">message</span></font>
 
 		<p><p>
@@ -11,29 +15,30 @@
 
 		</p>
 
-		<table >
-
-			<tr>
-				<th bgcolor="lightgrey"><b>Naam</b></th>
-				<th bgcolor="lightgrey"><b>Bloeitijd</b></th>
-				<th bgcolor="lightgrey"><b>Bladhoudend</b></th>
-				<th bgcolor="lightgrey"><b>hoogte</b></th>
-				<th bgcolor="lightgrey"><b>foto</b></th>
-				<th bgcolor="lightgrey"></th>
-				<th bgcolor="lightgrey"></th>
-			</tr>
-
-			<tr wicket:id="plantLijst" >
-				<td><span wicket:id="botanischeNaam">message</span></td>
-				<td><span wicket:id="bloeitijd">message</span></td> 
-				<td><span wicket:id="bladhoudend">message</span></td>
-				<td><span wicket:id="hoogte">message</span></td>
-				<td class="plantenfoto"> <img wicket:id="image" class="plantenfoto"/></td>
-				<td class="prullebak"><img wicket:id="updateimage"/></td>
-				<td class="prullebak"><img wicket:id="verwijderimage"/></td>
+		<table wicket:id="dataContainer">
+				<tr>
+					<th bgcolor="lightgrey"><b>Naam</b></th>
+					<th bgcolor="lightgrey"><b>Bloeitijd</b></th>
+					<th bgcolor="lightgrey"><b>Bladhoudend</b></th>
+					<th bgcolor="lightgrey"><b>hoogte</b></th>
+					<th bgcolor="lightgrey"><b>foto</b></th>
+					<th bgcolor="lightgrey"></th>
+					<th bgcolor="lightgrey"></th>
+					<th bgcolor="lightgrey"></th>
+				</tr>
 				
-			</tr>
-
+				
+				<tr wicket:id="plantLijst" >
+					<td><span wicket:id="botanischeNaam">message</span></td>
+					<td><span wicket:id="bloeitijd">message</span></td> 
+					<td><span wicket:id="bladhoudend">message</span></td>
+					<td><span wicket:id="hoogte">message</span></td>
+					<td class="plantenfoto"> <img wicket:id="image" class="plantenfoto"/></td>
+					<td class="prullebak"><img wicket:id="updateimage"/></td>
+					<td class="prullebak"><img wicket:id="verwijderimage"/></td>
+					<td class="prullebak"><img wicket:id="copyimage"/></td>
+					
+				</tr>
 		</table>
 		</p>
 

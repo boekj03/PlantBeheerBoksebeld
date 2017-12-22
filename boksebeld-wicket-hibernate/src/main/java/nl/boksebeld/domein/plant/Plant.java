@@ -23,6 +23,9 @@ public class Plant implements Serializable {
 	private String beschrijving;
 	private String botanischeNaam;
 	private String code;
+	private String leverancier;
+	private String handelsmaat;
+	private Double inkoopprijs;
 
 	private Hoogte hoogte;
 	private Bladhoudend bladhoudend;
@@ -165,6 +168,30 @@ public class Plant implements Serializable {
 		return grondsoort;
 	}
 
+	public String getLeverancier() {
+		return leverancier;
+	}
+
+	public void setLeverancier(String leverancier) {
+		this.leverancier = leverancier;
+	}
+
+	public String getHandelsmaat() {
+		return handelsmaat;
+	}
+
+	public void setHandelsmaat(String handelsmaat) {
+		this.handelsmaat = handelsmaat;
+	}
+
+	public Double getInkoopprijs() {
+		return inkoopprijs;
+	}
+
+	public void setInkoopprijs(Double inkoopprijs) {
+		this.inkoopprijs = inkoopprijs;
+	}
+
 	public void setGrondsoort(Grondsoort grondsoort) {
 		this.grondsoort = grondsoort;
 	}
@@ -208,6 +235,32 @@ public class Plant implements Serializable {
 		plant.getBloeitijdLijst().add(Bloeitijd.JULI);
 		plant.getBloeitijdLijst().add(Bloeitijd.NOVEMBER);
 		System.out.println(plant.getBloeitijdWeergave());
+	}
+
+	public Plant createCopy() {
+		Plant copy = new Plant();
+		copy.setBotanischeNaam(this.getBotanischeNaam() + "kopie");
+		copy.setAantalPerMeter(aantalPerMeter);
+		copy.setBeschrijving(beschrijving);
+		copy.setBladhoudend(bladhoudend);
+
+		for (Bloeitijd bloeitijd : bloeitijdLijst) {
+			copy.getBloeitijdLijst().add(bloeitijd);
+		}
+
+		copy.setCode(code);
+		copy.setGrondsoort(grondsoort);
+		copy.setHandelsmaat(handelsmaat);
+		copy.setHoogte(hoogte);
+		copy.setImage(image);
+		copy.setInkoopprijs(inkoopprijs);
+		copy.setKleur(kleur);
+		copy.setLeverancier(leverancier);
+		copy.setLichtbehoefte(lichtbehoefte);
+		copy.setNederlandseNaam(nederlandseNaam);
+		copy.setPlantsoort(plantsoort);
+
+		return copy;
 	}
 
 }

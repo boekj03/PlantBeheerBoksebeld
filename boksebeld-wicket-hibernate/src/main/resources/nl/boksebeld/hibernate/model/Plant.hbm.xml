@@ -94,7 +94,18 @@
             <element type="Bloeitijd" column="Bloeitijd"/>
         </set>
         
+        <!-- extra velden -->
+        <property name="leverancier" type="java.lang.String">
+            <column name="LEVERANCIER" />
+        </property>
         
+        <property name="inkoopprijs" type="java.lang.Double">
+            <column name="INKOOPPRIJS" />
+        </property>
+        
+        <property name="handelsmaat" type="java.lang.String">
+            <column name="HANDELSMAAT" />
+        </property>
       
    
     </class>

@@ -43,6 +43,6 @@ mysqldump -uroot -p --hex-blob plantbeheer > "C:\ws\temp\backuphex.sql"
 password is dan HteBmysql2017
 
 terug zetten:
-mysqldump -uroot -p --hex-blob plantbeheer < "C:\ws\temp\backuphex.sql"
+mysql -uroot -p --hex-blob plantbeheer < "C:\ws\temp\backuphex.sql"
 
 Hiervoor heb ik een bat file :DatabaseDumpTS.bat gemaakt.
