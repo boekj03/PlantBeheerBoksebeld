@@ -20,7 +20,7 @@ ALTER TABLE planten MODIFY IMAGE BLOB;
 
 downloaden van https://dev.mysql.com/downloads/installer/
 
-en dan installeren 
+ en dan installeren 
 de database benaderen onder: 
  <property name="connection.username">root</property>
   
@@ -51,7 +51,9 @@ voor het meer opslag maken van de beschrijving colomn
 ALTER TABLE plantbeheer.planten MODIFY beschrijving VARCHAR(2000);
 
 
+
 backup maken
+ 
 path C:\Program Files\MySQL\MySQL Server 5.7\bin toevoegen aan het variable
 
 mysqldump -uroot -p --hex-blob plantbeheer > "C:\ws\temp\backuphex.sql"
@@ -59,6 +61,7 @@ password is dan HteBmysql2017
 
 
 terug zetten:
+
 mysql -uroot -p --hex-blob plantbeheer < "C:\ws\temp\backuphex.sql"
 
 
